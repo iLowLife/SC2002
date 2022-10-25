@@ -1,42 +1,40 @@
 import java.util.*;
-
+import java.io.Console;
 public class User {
 
-	private static String Name;
-	private static String Email;
-	private static String Password;
-	private static boolean Role;
+	private String Name;
+	private String Email;
+	private String Password;
+	//private static boolean Role;
 
-	
-	public static void main(String[] args)
-	{
-		Scanner sc = new Scanner(System.in);
-
-		System.out.println("Welcome to Coom Village!");
-		System.out.println("Please insert the necessary details!");
-		System.out.println("Name:");
-		Name = sc.nextLine();
-		System.out.println("Email:");
-		Email = sc.nextLine();
-		System.out.println("Password:");
-		Password = sc.nextLine();
-		System.out.println("Role:");
-		String strRole = sc.nextLine();
-
-		if(strRole=="User"||strRole=="user")
-			Role=true;
-		else
-			Role=false;
-		
-			
-		System.out.println(Name);
-		System.out.println(Email);
-		System.out.println(Password);
-		System.out.println(strRole);
-		if(Role==true)
-			System.out.println("User");
-		else
-			System.out.println("Admin");
-		
+	public User(String Name, String Email, String Password) {
+		this.Name=Name;
+		this.Email=Email;
+		this.Password=Password;
 	}
+	
+	public String getName() {
+		return this.Name;
+	}
+	
+	public void setName(String Name) {
+		this.Name=Name;
+	}
+	
+	public String getEmail() {
+		return this.Email;
+	}
+	
+	public void setEmail(String Email) {
+		this.Email=Email;
+	}
+	
+	public String getPassword() {
+		return this.Password;
+	}
+	
+	public void setPassword(String Password) {
+		this.Password=Password;
+	}
+	
 }
