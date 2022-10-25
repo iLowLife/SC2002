@@ -121,15 +121,15 @@ public class Main {
 		Cineplex[2].getCinema()[2].getRoom()[1].getSeat()[24].setAssigned(true);
 		
 		//Preset Staff Data
-		x[0]= new Staff("Manager", 1000, true, "Tom", "abc@o", "1234");
-		x[1]= new Staff("Staff", 2010, false, "Dick", "xyz@o", "ab21");
-		x[2]= new Staff("Staff", 2011, true, "Harry", "potty@o", "qwer");
-		x[3]= new Staff("Manager", 1002, false, "Jerry", "tabe@o", "1256");
-		x[4]= new Staff("Staff", 2009, true, "Spike", "koc@o", "12cb");
+		x[0]= new Staff("Manager", 1000, true, "Tom", "tom@o", "1234");
+		x[1]= new Staff("Staff", 2010, false, "Dick", "dick@o", "4321");
+		x[2]= new Staff("Staff", 2011, true, "Harry", "harry@o", "5678");
+		x[3]= new Staff("Manager", 1002, false, "Jerry", "jerry@o", "8765");
+		x[4]= new Staff("Staff", 2009, true, "Spike", "spike@o", "1212");
 		
 		//Preset User Data
-		y[0]= new Customer("Bobby","tryer@g","9876","Student");
-		y[1]= new Customer("Parry","poil@g","5432","Senior Citizen");
+		y[0]= new Customer("Bobby","bobby@g","9876","Student");
+		y[1]= new Customer("Parry","parry@g","5432","Senior Citizen");
 	}
 
 	public static int MainUI(){
