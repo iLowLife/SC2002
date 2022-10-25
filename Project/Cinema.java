@@ -40,7 +40,7 @@ public class Cinema {
 	}
 
 	public Room[] getRoom() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub a
 		return Room;
 	}
 }
