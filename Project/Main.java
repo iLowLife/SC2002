@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 	static Cineplex[] Cineplex = new Cineplex[3];
+	static String assign;
 	public static void main(String[] args) {
 		 
 		Init();
@@ -13,14 +14,51 @@ public class Main {
 			for(int j=0;j<Cineplex[i].getNumOfCinema(); j++) {
 				System.out.println(Cineplex[i].getCinema()[j].getLocation());
 				for(int k=0;k < Cineplex[i].getCinema()[j].NumOfRoom;k++) {
-					System.out.println(Cineplex[i].getCinema()[j].getRoom()[k].getRoomNum());
+					System.out.println("Room Number: " + Cineplex[i].getCinema()[j].getRoom()[k].getRoomNum());
+					for(int l=0;l<Cineplex[i].getCinema()[j].getRoom()[k].NumOfSeat;l++) {
+						if (Cineplex[i].getCinema()[j].getRoom()[k].getSeat()[l].getAssigned() == false)
+							assign = "O";
+						else 
+							assign = "X";
+						System.out.print(Cineplex[i].getCinema()[j].getRoom()[k].getSeat()[l].getSeatID() + "(" + assign + ") ");
+						if (l%5 == 4){
+							System.out.println();
+						}
+					}
+					System.out.println();
 				}
 				System.out.println();
 			}
 			System.out.println();
 		}
+	}
 		
+
+		/* 
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Centralized Movie Booking App");
+		System.out.println("Please select a cineplex:");
+		System.out.println("1. Admin Module");
+		System.out.println("2. Movie-goer Module");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("////////////////////////////////////////////////////");
+
+		if (sc.nextInt() == 1){
+			System.out.println("Admin Stuff");
+		}
+
+		else if (sc.nextInt() == 2){
+			System.out.println("Movie Goer Stuff");
+		}
+
+		else {
+			System.out.println("Invalid input");
+		}
+
 		
+
 		System.out.println("////////////////////////////////////////////////////");
 		System.out.println("Movie Booking App");
 		System.out.println("Please select a cineplex:");
@@ -30,7 +68,7 @@ public class Main {
 		System.out.println("");
 		System.out.println("////////////////////////////////////////////////////");
 		
-		Scanner sc = new Scanner(System.in);
+		
 		int CNPX = sc.nextInt()-1;
 		
 		System.out.println("////////////////////////////////////////////////////");
@@ -41,7 +79,7 @@ public class Main {
 		System.out.println("3. Movie 3");
 		System.out.println("");
 		System.out.println("////////////////////////////////////////////////////");
-	}
+	}*/
 	
 	static void Init() {
 		//Name, Number of Cinema
@@ -52,8 +90,6 @@ public class Main {
 		Cineplex[0].getCinema()[0].setLocation("GV @ Bedok");
 		Cineplex[0].getCinema()[1].setLocation("GV @ Jurong");
 		Cineplex[0].getCinema()[2].setLocation("GV @ Yishun");
-		//Cineplex[0].getCinema()[3].setLocation("GV @ Bishan");
-		//Cineplex[0].getCinema()[4].setLocation("GV @ Katong");
 		
 		Cineplex[1].getCinema()[0].setLocation("Shaws @ Seletar");
 		Cineplex[1].getCinema()[1].setLocation("Shaws @ NEX");
@@ -62,18 +98,10 @@ public class Main {
 		Cineplex[2].getCinema()[0].setLocation("Cathay @ West Mall");
 		Cineplex[2].getCinema()[1].setLocation("Cathay @ The Cathay");
 		Cineplex[2].getCinema()[2].setLocation("Cathay @ Funan");
-
-		/*Cineplex[0].getCinema()[0].setNumOfRoom(3);
-		Cineplex[0].getCinema()[1].setNumOfRoom(4);
-		Cineplex[0].getCinema()[2].setNumOfRoom(5);
-		Cineplex[0].getCinema()[3].setNumOfRoom(6);
-		Cineplex[0].getCinema()[4].setNumOfRoom(7);
 		
-		Cineplex[1].getCinema()[0].setNumOfRoom(2);
-		Cineplex[1].getCinema()[1].setNumOfRoom(3);
-		Cineplex[1].getCinema()[2].setNumOfRoom(4);
-		
-		Cineplex[2].getCinema()[0].setNumOfRoom(2);
-		Cineplex[2].getCinema()[1].setNumOfRoom(3);*/
+		//Set Cathay @ Funan Room 2, Seat 0 to be assigned
+		Cineplex[2].getCinema()[2].getRoom()[2].getSeat()[0].setAssigned(true);
+		//Set Cathay @ Funan Room 1, Seat 24 to be assigned
+		Cineplex[2].getCinema()[2].getRoom()[1].getSeat()[24].setAssigned(true);
 	}
 }
