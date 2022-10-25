@@ -1,14 +1,15 @@
-//package MovieBooking;
-
 import java.util.Scanner;
 
 public class Main {
 	static Cineplex[] Cineplex = new Cineplex[3];
 	static String assign;
+	static Staff x[]= new Staff [5];
+	static Customer y[] = new Customer[100];
+	static int count=2;
 	public static void main(String[] args) {
 		 
 		Init();
-		
+
 		for (int i=0;i<Cineplex.length;i++) {
 			System.out.println(Cineplex[i].getName() + " Cineplex");
 			for(int j=0;j<Cineplex[i].getNumOfCinema(); j++) {
@@ -31,30 +32,47 @@ public class Main {
 			}
 			System.out.println();
 		}
-	}
 		
-
-				Scanner sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		int input = MainUI();
 		
 		if(input == 1){
 			//System.out.println("Admin Stuff");
 			int input2 = AdminUI1();
 			if (input2 == 1) {
-				AdminUI2();
+				//AdminUI2();
 			}
-			else if (input2 == 2){
+			else if (input2 == 0){
 				input = MainUI();
 			}
 		}
 		else{
 			//System.out.println("Movie Goer Stuff");
-			MovieGoerUI1();
+			int inputGo2 = MovieGoerUI1();
+			if(inputGo2 ==1)
+			{
+				System.out.println("Buy Ticket Stuff");
+			}
+			else if (inputGo2 ==2) {
+				//System.out.println("Login Stuff");
+				int inputLogin=MovieGoerUI2();
+				if(inputLogin==1)
+					System.out.println("Login Successful!");
+				else
+				{
+					System.out.println("Login Fail");
+					input=MainUI();
+				}
+			}
+			else {
+				System.out.println("Register Stuff");
+				MovieGoerUI3();
+				System.out.println("Register Successful!");
+			}
 		}
-
+	}
 
 		/* 
-
 		System.out.println("////////////////////////////////////////////////////");
 		System.out.println("Movie Booking App");
 		System.out.println("Please select a cineplex:");
@@ -75,9 +93,8 @@ public class Main {
 		System.out.println("3. Movie 3");
 		System.out.println("");
 		System.out.println("////////////////////////////////////////////////////");
-
 		*/
-	}
+	//}
 	
 	
 	static void Init() {
@@ -102,6 +119,17 @@ public class Main {
 		Cineplex[2].getCinema()[2].getRoom()[2].getSeat()[0].setAssigned(true);
 		//Set Cathay @ Funan Room 1, Seat 24 to be assigned
 		Cineplex[2].getCinema()[2].getRoom()[1].getSeat()[24].setAssigned(true);
+		
+		//Preset Staff Data
+		x[0]= new Staff("Manager", 1000, true, "Tom", "abc@o", "1234");
+		x[1]= new Staff("Staff", 2010, false, "Dick", "xyz@o", "ab21");
+		x[2]= new Staff("Staff", 2011, true, "Harry", "potty@o", "qwer");
+		x[3]= new Staff("Manager", 1002, false, "Jerry", "tabe@o", "1256");
+		x[4]= new Staff("Staff", 2009, true, "Spike", "koc@o", "12cb");
+		
+		//Preset User Data
+		y[0]= new Customer("Bobby","tryer@g","9876","Student");
+		y[1]= new Customer("Parry","poil@g","5432","Senior Citizen");
 	}
 
 	public static int MainUI(){
@@ -138,10 +166,85 @@ public class Main {
 		System.out.println("");
 		System.out.println("");
 		System.out.println("////////////////////////////////////////////////////");
-		if (email.equals("admin") && password.equals("admin")) {
-			return 1;
+		
+		for(int a=0;a<5;a++) {
+			if(email.equals(x[a].getEmail())) {
+				System.out.println(x[a].getPassword());
+				if(password.equals(x[a].getPassword()))
+					return 1;
+				else 
+					return 0;
+			}
 		}
-		else
-			return 0;
+		return 0;
+	}
+	
+	public static int MovieGoerUI1() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Movie-goer Module Login");
+		System.out.println("1. Buy Ticker");
+		System.out.println("2. Login");
+		System.out.println("3. Register");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("////////////////////////////////////////////////////");
+		
+		int inputGo = sc.nextInt();
+		while(inputGo != 1 || inputGo != 2 || inputGo !=3) {	//input 1 or 2 will break the while loop
+			if (inputGo == 1 || inputGo == 2 || inputGo ==3) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			inputGo = sc.nextInt();
+		}
+		return inputGo;
+	}
+	
+	public static int MovieGoerUI2(){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Movie-goer Module Login");
+		System.out.println("Email :");
+		String email = sc.next();
+		System.out.println("Password :");
+		String password = sc.next();
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("////////////////////////////////////////////////////");
+		
+		for(int a=0;a<100;a++) {
+			if(email.equals(y[a].getEmail())) {
+				System.out.println(y[a].getPassword());
+				if(password.equals(y[a].getPassword()))
+					return 1;
+				else 
+					return 0;
+			}
+		}
+		return 0;
+	}
+	
+	public static void MovieGoerUI3() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Movie-goer Module Register");
+		System.out.println("Please fill up accordingly:");
+		System.out.println("Name:");
+		String name=sc.next();
+		System.out.println("Email:");
+		String email=sc.next();
+		System.out.println("Password:");
+		String pass=sc.next();
+		System.out.println("Student/Senior Citizen/Others:");
+		String typeofCust=sc.next();
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("////////////////////////////////////////////////////");
+		y[count] = new Customer(name,email,pass,typeofCust);
+		count++;
 	}
 }
