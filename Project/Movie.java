@@ -8,24 +8,30 @@ public class Movie {
 	private String[] Cast;
 	private String[] Review;
 
-	public void getRating() {
-		// TODO - implement Movie.getRating
-		throw new UnsupportedOperationException();
-	}
+	
 
-	public void getReview() {
-		// TODO - implement Movie.getReview
-		throw new UnsupportedOperationException();
-	}
+	
 
 	public void calRating() {
 		// TODO - implement Movie.calRating
-		throw new UnsupportedOperationException();
-	}
+        int sum = 0;
+        
+        for(int i=0; i<Review.length; i++) {
+			int sum = sum + getRating();
+		}
+		float average = sum/Review.length;
+		System.out.println("Average rating is: " + average);
+        }
+        
+		
+	
 
-	public void ticketSales() {
+	
+
+    public void ticketSales() {
 		// TODO - implement Movie.ticketSales
 		throw new UnsupportedOperationException();
 	}
+    
 
-}
+}  
