@@ -34,30 +34,26 @@ public class Main {
 	}
 		
 
-		/* 
-		Scanner sc = new Scanner(System.in);
-		System.out.println("////////////////////////////////////////////////////");
-		System.out.println("Centralized Movie Booking App");
-		System.out.println("Please select a cineplex:");
-		System.out.println("1. Admin Module");
-		System.out.println("2. Movie-goer Module");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("////////////////////////////////////////////////////");
-
-		if (sc.nextInt() == 1){
-			System.out.println("Admin Stuff");
-		}
-
-		else if (sc.nextInt() == 2){
-			System.out.println("Movie Goer Stuff");
-		}
-
-		else {
-			System.out.println("Invalid input");
-		}
-
+				Scanner sc = new Scanner(System.in);
+		int input = MainUI();
 		
+		if(input == 1){
+			//System.out.println("Admin Stuff");
+			int input2 = AdminUI1();
+			if (input2 == 1) {
+				AdminUI2();
+			}
+			else if (input2 == 2){
+				input = MainUI();
+			}
+		}
+		else{
+			//System.out.println("Movie Goer Stuff");
+			MovieGoerUI1();
+		}
+
+
+		/* 
 
 		System.out.println("////////////////////////////////////////////////////");
 		System.out.println("Movie Booking App");
@@ -79,7 +75,10 @@ public class Main {
 		System.out.println("3. Movie 3");
 		System.out.println("");
 		System.out.println("////////////////////////////////////////////////////");
-	}*/
+
+		*/
+	}
+	
 	
 	static void Init() {
 		//Name, Number of Cinema
@@ -98,10 +97,51 @@ public class Main {
 		Cineplex[2].getCinema()[0].setLocation("Cathay @ West Mall");
 		Cineplex[2].getCinema()[1].setLocation("Cathay @ The Cathay");
 		Cineplex[2].getCinema()[2].setLocation("Cathay @ Funan");
-		
+
 		//Set Cathay @ Funan Room 2, Seat 0 to be assigned
 		Cineplex[2].getCinema()[2].getRoom()[2].getSeat()[0].setAssigned(true);
 		//Set Cathay @ Funan Room 1, Seat 24 to be assigned
 		Cineplex[2].getCinema()[2].getRoom()[1].getSeat()[24].setAssigned(true);
+	}
+
+	public static int MainUI(){
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Centralized Movie Booking App");
+		System.out.println("Please select a cineplex:");
+		System.out.println("1. Admin Module");
+		System.out.println("2. Movie-goer Module");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("////////////////////////////////////////////////////");
+
+		Scanner sc = new Scanner(System.in);
+		int input = sc.nextInt();
+		while(input != 1 || input != 2) {	//input 1 or 2 will break the while loop
+			if (input == 1 || input == 2) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			input = sc.nextInt();
+		}
+		return input;
+	}
+
+	public static int AdminUI1(){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Admin Module Login");
+		System.out.println("Email :");
+		String email = sc.next();
+		System.out.println("Password :");
+		String password = sc.next();
+		System.out.println("");
+		System.out.println("");
+		System.out.println("");
+		System.out.println("////////////////////////////////////////////////////");
+		if (email.equals("admin") && password.equals("admin")) {
+			return 1;
+		}
+		else
+			return 0;
 	}
 }
