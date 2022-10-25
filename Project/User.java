@@ -2,28 +2,41 @@ import java.util.*;
 
 public class User {
 
-	private String Name;
-	private String Email;
-	private String Password;
-	private boolean Role;
+	private static String Name;
+	private static String Email;
+	private static String Password;
+	private static boolean Role;
 
-
+	
 	public static void main(String[] args)
 	{
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("Welcome to Coom Village!");
+		System.out.println("Please insert the necessary details!");
 		System.out.println("Name:");
-		String strName = sc.nextLine();
+		Name = sc.nextLine();
 		System.out.println("Email:");
-		String strMail = sc.nextLine();
+		Email = sc.nextLine();
 		System.out.println("Password:");
-		String strPW = sc.nextLine();
+		Password = sc.nextLine();
 		System.out.println("Role:");
 		String strRole = sc.nextLine();
 
-		if(strRole=="User")
-			Role="T";
+		if(strRole=="User"||strRole=="user")
+			Role=true;
 		else
+			Role=false;
+		
+			
+		System.out.println(Name);
+		System.out.println(Email);
+		System.out.println(Password);
+		System.out.println(strRole);
+		if(Role==true)
+			System.out.println("User");
+		else
+			System.out.println("Admin");
+		
 	}
 }
