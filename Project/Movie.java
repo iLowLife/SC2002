@@ -7,9 +7,9 @@ public class Movie {
 	private String Director;
 	private String ContentRating;
 	private String[] Cast;
-	private String[] Review;
+	private ArrayList<Review> Review=new ArrayList<Review>();//Creating arraylist  
 
-	public void movieDetails(String MovieTitle, String Record, String ShowingStatus, String Synopsis, String Director, String ContentRating, String[] Cast, String[] Review) {
+	/*public void movieDetails(String MovieTitle, String Record, String ShowingStatus, String Synopsis, String Director, String ContentRating, String[] Cast, String[] Review) {
 		this.MovieTitle = MovieTitle;
 		this.Record = Record;
 		this.ShowingStatus = ShowingStatus;
@@ -17,7 +17,19 @@ public class Movie {
 		this.Director = Director;
 		this.ContentRating = ContentRating;
 		this.Cast = Cast;
-		this.Review = Review;
+		//this.Review = Review;
+	}*/
+	
+	public Movie(String MovieTitle, String ShowingStatus, String Synopsis, String Director, String[] Cast) {
+		this.MovieTitle = MovieTitle;
+		//this.Record = Record;
+		this.ShowingStatus = ShowingStatus;
+		this.Synopsis = Synopsis;
+		this.Director = Director;
+		this.Cast = Cast;
+		//this.NumOfMovies++;
+		this.NoOfReview=0;
+
 	}
 
 	public void getMovieDetails(){
@@ -83,6 +95,86 @@ public class Movie {
 				break;
 		}
 	}
+	
+	public void getRating() {
+		// TODO - implement Movie.getRating
+		throw new UnsupportedOperationException();
+	}
+
+	public void calRating() {
+		// TODO - implement Movie.calRating
+		throw new UnsupportedOperationException();
+	}
+
+	public void ticketSales() {
+		// TODO - implement Movie.ticketSales
+		throw new UnsupportedOperationException();
+	}
+
+	public String getMovieTitle() {
+		// TODO - implement Movie.getMovieTitle
+		return this.MovieTitle;
+	}
+
+	public String getShowingStatus() {
+		// TODO - implement Movie.getShowingStatus
+		return this.ShowingStatus;
+	}
+
+	public String getSynopsis() {
+		// TODO - implement Movie.getSynopsis
+		return this.Synopsis;
+	}
+
+	public String getDirector() {
+		// TODO - implement Movie.getDirector
+		return this.Director;
+	}
+
+	public String[] getCast() {
+		// TODO - implement Movie.getCast
+		return this.Cast;
+	}
+
+	public ArrayList<Review> getReview() {
+		// TODO - implement Movie.getReview
+		return this.Review;
+	}
+
+	public Movie getMovie(){
+		return this;
+	}
+
+	public void setMovieTitle(String MovieTitle) {
+		this.MovieTitle = MovieTitle;
+	}
+
+	public void setShowingStatus(String ShowingStatus) {
+		this.ShowingStatus = ShowingStatus;
+	}
+
+	public void setSynopsis(String Synopsis) {
+		this.Synopsis = Synopsis;
+	}
+
+	public void setDirector(String Director) {
+		this.Director = Director;
+	}
+
+	public void setCast(String[] Cast) {
+		this.Cast = Cast;
+	}
+
+	/*public void setReview(String[] Review) {
+		this.Review = Review;
+	}*/
+
+	public int getNumbOfReview() {
+		// TODO - implement Movie.getNumbOfReview
+		return this.NoOfReview;
+	}
+	
+	
 	public void calRating() {
 		// TODO - implement Movie.calRating
         int sum = 0;
@@ -93,12 +185,15 @@ public class Movie {
 		//System.out.println("Average rating is: " + average);
         }
 
-	
-
     public void ticketSales() {
 		// TODO - implement Movie.ticketSales
 		
 	}
+   public void addReview(String review,int Rating){
+	System.out.println("UwU");
+	this.Review.add(new Review(review,Rating,this.MovieTitle));
+	this.NoOfReview++;
+    }
     
 
 }  
