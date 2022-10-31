@@ -1,76 +1,593 @@
+//package MovieBooking;
+
+import java.util.Iterator;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main {
-	static Cineplex[] Cineplex = new Cineplex[3];
+	private static ArrayList<Movie> Movie=new ArrayList<Movie>();//Creating arraylist
+	private static ArrayList<Staff> Staff=new ArrayList<Staff>();//Creating arraylist
+	private static ArrayList<Cineplex> Cineplex=new ArrayList<Cineplex>();//Creating arraylist
+	private static ArrayList<Customer> Customer=new ArrayList<Customer>();//Creating arraylist
+	private static ArrayList<MovieSchedule> MovieSchedule=new ArrayList<MovieSchedule>();//Creating arraylist
+	private static ArrayList<Ticket> Ticket=new ArrayList<Ticket>();//Creating arraylist*/
+
 	static String assign;
-	static Staff x[]= new Staff [5];
-	static Customer y[] = new Customer[100];
-	static int count=2;
 	public static void main(String[] args) {
 		 
 		Init();
-
-		for (int i=0;i<Cineplex.length;i++) {
-			System.out.println(Cineplex[i].getName() + " Cineplex");
-			for(int j=0;j<Cineplex[i].getNumOfCinema(); j++) {
-				System.out.println(Cineplex[i].getCinema()[j].getLocation());
-				for(int k=0;k < Cineplex[i].getCinema()[j].NumOfRoom;k++) {
-					System.out.println("Room Number: " + Cineplex[i].getCinema()[j].getRoom()[k].getRoomNum());
-					for(int l=0;l<Cineplex[i].getCinema()[j].getRoom()[k].NumOfSeat;l++) {
-						if (Cineplex[i].getCinema()[j].getRoom()[k].getSeat()[l].getAssigned() == false)
-							assign = "O";
-						else 
-							assign = "X";
-						System.out.print(Cineplex[i].getCinema()[j].getRoom()[k].getSeat()[l].getSeatID() + "(" + assign + ") ");
-						if (l%5 == 4){
-							System.out.println();
+		while(true){
+			System.out.println("Welcome to MOBLIMA");
+			int input = MainUI();
+			if(input == 1){
+				//Admin Stuff
+				if (AdminUILogin()) { 
+					int r = 1;
+					while(r > 0 && r < 11){ //r should be within 1 to 10
+						r = AdminUIMain();
+						switch(r){			//11 to logout
+							case 1:
+								//Add Movie
+								System.out.println("Add Movie");
+								AdminUIAddMovie();
+								break;
+							case 2:	//case 1 to 3, Create, Update and Delete Movie
+								//Update Movie
+								System.out.println("Update Movie");
+								AdminUIUpdateMovie();
+								break;
+							case 3:
+								//Delete Movie
+								System.out.println("Delete Movie");
+								AdminUIRemoveMovie();
+								break;
+							case 4: //case 4 to 6 create, update and delete Movie Schedule
+								//Create Movie Schedule
+								System.out.println("Create Movie Schedule");
+								AdminUICreateMovieSchedule();
+								break;
+							case 5:
+								//Update Movie Schedule
+								System.out.println("Update Movie Schedule");
+								break;
+							case 6:
+								//Delete Movie Schedule
+								//System.out.println("Delete Movie Schedule");
+								System.out.println("Delete Movie Schedule");
+								AdminUIViewMovie();
+								break;
+							case 7:
+								//View Movie
+								System.out.println("View Movie");
+								AdminUIViewMovie();
+								break;
+							case 8:
+								//View Movie Schedule
+								System.out.println("View Movie Schedule");
+								//AdminUIViewMovieSchedule();
+								break;
+							case 9:
+								//View Top 5 Movies
+								System.out.println("View Top 5 Movies");
+								//AdminUIViewTop5Movies();
+								break;
+							case 10:
+								//View Top 5 Movies
+								System.out.println("View Top 5 Movies");
+								//AdminUIViewTop5Movies();
+								break;
+							case 11:
+								//Logout
+								System.out.println("Logging out...");
+								break;
 						}
+						//Loop this function unless user logout
 					}
-					System.out.println();
-				}
-				System.out.println();
-			}
-			System.out.println();
-		}
-		
-		Scanner sc = new Scanner(System.in);
-		int input = MainUI();
-		
-		if(input == 1){
-			//System.out.println("Admin Stuff");
-			int input2 = AdminUI1();
-			if (input2 == 1) {
-				//AdminUI2();
-			}
-			else if (input2 == 0){
-				input = MainUI();
-			}
-		}
-		else{
-			//System.out.println("Movie Goer Stuff");
-			int inputGo2 = MovieGoerUI1();
-			if(inputGo2 ==1)
-			{
-				System.out.println("Buy Ticket Stuff");
-			}
-			else if (inputGo2 ==2) {
-				//System.out.println("Login Stuff");
-				int inputLogin=MovieGoerUI2();
-				if(inputLogin==1)
-					System.out.println("Login Successful!");
-				else
-				{
-					System.out.println("Login Fail");
-					input=MainUI();
 				}
 			}
-			else {
-				System.out.println("Register Stuff");
-				MovieGoerUI3();
-				System.out.println("Register Successful!");
+			else if(input == 2){
+				//Mover-goer Stuff
+				int r = 1;	
+				while(r > 0 && r < 4){ //r should be within 1 to 4
+					r = MovieGoerUIStart();
+					switch(r){			//4 to go back
+					case 1:
+						System.out.println("View Movie");
+						MovieGoerUIViewMovie();
+						break;
+					case 2:
+						System.out.println("Login");
+						if(MovieGoerUILogin()){//On Login Success, move to Booking UI
+							System.out.println("Login Success");
+							int x = 1;
+							while(x > 0 && x < 7){ //r should be within 1 to 7
+								x = MovieGoerUIMain();
+								switch(x){			//7 to logout
+									case 1:
+										// View Movie Schedule
+										System.out.println("View Movie Schedule");
+										//MovieGoerUIViewMovieSchedule();
+										break;
+									case 2:
+										//View Movie Details
+										System.out.println("View Movie Details");
+										MovieGoerUIViewMovie();
+										break;
+									case 3:
+										//Book Ticket
+										System.out.println("Book Ticket");
+										//MovieGoerUIBookTicket();
+										break;
+									case 4:
+										//View Booking History
+										System.out.println("View Booking History");
+										//MovieGoerUIViewBookingHistory();
+										break;
+									case 5:
+										//View Top 5 Movies by Ticket Sales
+										System.out.println("View Top 5 Movies by Ticket Sales");
+										break;
+									case 6:
+										//View Top 5 Movies by Rating
+										System.out.println("View Top 5 Movies by Rating");
+										break;
+									case 7:
+										//Logout
+										System.out.println("Logging out...");
+									break;
+								}	
+							}
+						}
+						else{
+							System.out.println("Login Failed");
+						}
+						break;
+					case 3:
+						System.out.println("Create Account");
+						//MovieGoerUICreateAccount();
+						break;
+					case 4:
+						//Go Back
+						System.out.println("Back to Main Menu");
+						break;
+					}
+					//Loop this function unless user decide to go back
+				}
+								
+
+			}
+			else if(input == 3){
+				//Exit
+				System.out.println("Exiting...");
+				break;
 			}
 		}
 	}
+
+	static void Init() {
+		//Name, Number of Cinema
+		//Create Cineplex Objects 
+		Cineplex.add( new Cineplex("Golden Village"));
+		Cineplex.add( new Cineplex("Shaws"));
+		Cineplex.add( new Cineplex("Cathay"));
+		
+		/* 
+		//Create Cinema Objects and set Locations
+		Cineplex[0].getCinema()[0].setLocation("GV @ Bedok");
+		Cineplex[0].getCinema()[1].setLocation("GV @ Jurong");
+		Cineplex[0].getCinema()[2].setLocation("GV @ Yishun");
+		
+		Cineplex[1].getCinema()[0].setLocation("Shaws @ Seletar");
+		Cineplex[1].getCinema()[1].setLocation("Shaws @ NEX");
+		Cineplex[1].getCinema()[2].setLocation("Shaws @ Paya Lebar");
+		
+		Cineplex[2].getCinema()[0].setLocation("Cathay @ West Mall");
+		Cineplex[2].getCinema()[1].setLocation("Cathay @ The Cathay");
+		Cineplex[2].getCinema()[2].setLocation("Cathay @ Funan");
+		*/
+		//Create Movie Objects
+		Movie.add(new Movie("Avengers: Endgame", "Now Showing", "The grave course of events set in motion by Thanos that wiped out half the universe and fractured the Avengers ranks compels the remaining Avengers to take one final stand in Marvel Studios' grand conclusion to twenty-two films.", "Anthony Russo, Joe Russo", new String[] { "Robert Downey Jr.", "Chris Evans", "Mark Ruffalo", "Chris Hemsworth", "Scarlett Johansson" }));
+		Movie.add(new Movie("Captain Marvel", "Now Showing", "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien", "Anna Boden, Ryan Fleck", new String[] { "Brie Larson", "Samuel L. Jackson", "Ben Mendelsohn", "Jude Law", "Annette Bening" }));
+		Movie.add(new Movie("Alita: Battle Angel", "Now Showing", "When Alita awakens with no memory of who she is in a future world she does not recognize, she is taken in by Ido, a compassionate doctor who realizes that somewhere in this abandoned cyborg shell is the heart and soul", "Robert Rodriguez", new String[] { "Rosa Salazar", "Christoph Waltz", "Jennifer Connelly", "Mahershala Ali", "Ed Skrein" }));
+		Movie.add(new Movie("How to Train Your Dragon: The Hidden World", "Now Showing", "As Hiccup fulfills his dream of creating a peaceful dragon utopia, Toothless' discovery of an untamed, elusive mate draws the Night Fury away. When danger mounts at home and Hiccup's reign as village chief is tested, both dragon and rider must make impossible decisions to save their kind.", "Dean DeBlois", new String[] { "Jay Baruchel", "America Ferrera", "F. Murray Abraham", "Cate Blanchett", "Craig Ferguson" }));
+	}
+
+	public static int MainUI(){
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Centralized Movie Booking App");
+		System.out.println("Please select a cineplex:");
+		System.out.println("1. Admin Module");
+		System.out.println("2. Movie-goer Module");
+		System.out.println("3. Exit System");
+		System.out.println("");
+		System.out.println("////////////////////////////////////////////////////");
+		Scanner sc = new Scanner(System.in);
+		int input = sc.nextInt();
+		while(input < 1 && input > 3) {	//input 1,2,3 will break the while loop
+			if (input >= 1 && input <= 3) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			input = sc.nextInt();
+		}
+		return input;
+	}
+
+/////////////////////////////   ADMIN UI STARTS HERE      /////////////////////////////
+
+	public static boolean AdminUILogin(){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Admin Module Login");
+		System.out.print("Email :");
+		String email = sc.next();
+		System.out.print("Password :");
+		String password = sc.next();
+		System.out.println("////////////////////////////////////////////////////");
+		if (email.equals("admin") && password.equals("admin")) {
+			return true;
+		}
+		else{
+			System.out.println("Invalid Email or Password");
+			return false;
+		}
+	}
+
+	public static int AdminUIMain(){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Admin Module");
+		System.out.println("1. Add Movie");
+		System.out.println("2. Update Movie");
+		System.out.println("3. Remove Movie");
+		System.out.println("4. Add Movie Show Time");
+		System.out.println("5. Update Movie Show Time");
+		System.out.println("6. Remove Movie Show Time");
+		System.out.println("7. View Movies");
+		System.out.println("8. View Movie Schedule");
+		System.out.println("9. Top 5 Movies by Ticket Sold");
+		System.out.println("10. Top 5 Movies by Ratings");
+		System.out.println("11. Logout");
+		System.out.println("");
+		System.out.println("////////////////////////////////////////////////////");
+		int input = sc.nextInt();
+		while(input < 1 && input > 7) {	//input 1 to 7 will break the while loop
+			if (input >= 1 && input <= 7) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			input = sc.nextInt();
+		}
+		return input;
+	}
+	public static void AdminUIAddMovie(){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Add Movie");
+		System.out.print("Movie Title :");
+		String title = sc.next();
+		System.out.print("Movie Status :");
+		String status = sc.next();
+		System.out.print("Movie Synopsis :");
+		String synopsis = sc.next();
+		System.out.print("Movie Director :");
+		String director = sc.next();
+		System.out.print("Movie Cast :");
+		String cast = sc.next();
+		Movie.add(new Movie(title, status, synopsis, director, new String[] { cast }));
+		System.out.println("Movie Added");
+		System.out.println("");
+		System.out.println("////////////////////////////////////////////////////");
+	}
+
+	public static void AdminUIUpdateMovie(){
+		//update movie
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Update Movie");
+		System.out.println("Select Movie :");
+		for (int i = 0; i < Movie.size(); i++) {
+			System.out.println(i + 1 + ". " + Movie.get(i).getMovieTitle());
+		}
+		int input = sc.nextInt();
+		while(input < 1 && input > Movie.size()) {	//input 1 to 7 will break the while loop
+			if (input >= 1 && input <= Movie.size()) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			input = sc.nextInt();
+		}
+		System.out.println("Movie Title :");
+		String title = sc.next();
+		System.out.println("Movie Status :");
+		String status = sc.next();
+		System.out.println("Movie Synopsis :");
+		String synopsis = sc.next();
+		System.out.println("Movie Director :");
+		String director = sc.next();
+		System.out.println("Movie Cast :");
+		String cast = sc.next();
+		Movie.get(input-1).setMovieTitle(title);
+		Movie.get(input-1).setShowingStatus(status);
+		Movie.get(input-1).setSynopsis(synopsis);
+		Movie.get(input-1).setDirector(director);
+		Movie.get(input-1).setCast(new String[] { cast });
+		System.out.println("Movie Updated");
+		System.out.println("");
+		System.out.println("////////////////////////////////////////////////////");
+	}
+
+	public static void AdminUIRemoveMovie(){
+		//Remove Movie
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Remove Movie");
+		System.out.println("Select Movie :");
+		for (int i = 0; i < Movie.size(); i++) {
+			System.out.println(i + 1 + ". " + Movie.get(i).getMovieTitle());
+		}
+		int input = sc.nextInt();
+		while(input < 1 && input > Movie.size()) {	//input 1 to 7 will break the while loop
+			if (input >= 1 && input <= Movie.size()) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			input = sc.nextInt();
+		}
+		Movie.remove(input-1);
+		System.out.println("Movie Removed");
+		System.out.println("");
+		System.out.println("////////////////////////////////////////////////////");
+	}
+
+	public static void AdminUIViewMovie(){	//Reminder to add Try Catch for Index Out of Bounds
+		//View Movie
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("View Movie");
+		System.out.println("Select Movie :");
+		for (int i = 0; i < Movie.size(); i++) {
+			System.out.println(i + 1 + ". " + Movie.get(i).getMovieTitle());
+		}
+		int input = sc.nextInt();
+		while(input < 1 && input > Movie.size()) {	//input 1 to 7 will break the while loop
+			if (input >= 1 && input <= Movie.size()) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			input = sc.nextInt();
+		}
+		System.out.println("Movie Title : " + Movie.get(input-1).getMovieTitle());
+		System.out.println("Movie Status : " + Movie.get(input-1).getShowingStatus());
+		System.out.println("Movie Synopsis : " + Movie.get(input-1).getSynopsis());
+		System.out.println("Movie Director : " + Movie.get(input-1).getDirector());
+		System.out.print("Movie Cast : [");
+		for(int i =0; i< Movie.get(input-1).getCast().length; i++) {
+			System.out.print(Movie.get(input-1).getCast()[i] + ",");
+		}
+		System.out.println("]");
+		System.out.println("");
+		System.out.println("////////////////////////////////////////////////////");
+	}
+
+	public static void AdminUICreateMovieSchedule(){
+		//create movie schedule object
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Create Movie Schedule");
+		System.out.println("Select Movie :");
+		//Select movie only where status is "Now Showing" or "Coming Soon"
+		for (int i = 0; i < Movie.size(); i++) {
+			if(Movie.get(i).getShowingStatus().equals("Now Showing") || Movie.get(i).getShowingStatus().equals("Coming Soon")) {
+				System.out.println(i + 1 + ". " + Movie.get(i).getMovieTitle());
+			}
+		}
+		int input = sc.nextInt();
+		while(input < 1 && input > Movie.size()) {	//input 1 to 7 will break the while loop
+			if (input >= 1 && input <= Movie.size()) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			input = sc.nextInt();
+		}
+		//Create new movie schedule object
+		System.out.println("Movie Title : " + Movie.get(input-1).getMovieTitle());
+		System.out.println("Movie Status : " + Movie.get(input-1).getShowingStatus());
+		System.out.println("Movie Synopsis : " + Movie.get(input-1).getSynopsis());
+		System.out.println("Movie Director : " + Movie.get(input-1).getDirector());
+		System.out.print("Movie Cast : [");
+		for(int i =0; i< Movie.get(input-1).getCast().length; i++) {
+			System.out.print(Movie.get(input-1).getCast()[i] + ",");
+		}
+		System.out.println("]");
+		System.out.println("Movie Schedule :");
+		System.out.println("Cinema Code :");
+		String cinemaCode = sc.next();
+		System.out.println("Cinema Class :");
+		String cinemaClass = sc.next();
+		System.out.println("Movie Date :");
+		String movieDate = sc.next();
+		System.out.println("Movie Time :");
+		String movieTime = sc.next();
+		System.out.println("Movie Type :");
+		String movieType = sc.next();
+		System.out.println("Movie Price :");
+		double moviePrice = sc.nextDouble();
+		//MovieSchedule.add(new MovieSchedule(cinemaCode, cinemaClass, movieDate, movieTime, movieType, moviePrice, Movie.get(input-1)));
+		System.out.println("Movie Schedule Created");
+		System.out.println("");
+		System.out.println("////////////////////////////////////////////////////");
+
+
+	}
+
+/////////////////////////////    MOVIE GOER UI STARTS HERE      /////////////////////////////
+
+	public static int MovieGoerUIStart(){
+		//Customer can view movie schedule
+		//Customer must create an account to book a ticket
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("MovieGoerUI1");
+		System.out.println("1. View Movie Schedule");
+		System.out.println("2. Login");
+		System.out.println("3. Create Account");
+		System.out.println("4. Back to Main Menu");
+		System.out.println("////////////////////////////////////////////////////");
+		int input = sc.nextInt();
+		while(input < 1 && input > 4) {	//input 1 to 4 will break the while loop
+			if (input >= 1 && input <= 4) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			input = sc.nextInt();
+		}
+		return input;
+	}
+
+	public static void MovieGoerUIViewMovie(){
+		//View Movie
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("View Movie");
+		System.out.println("Select Movie :");
+		for (int i = 0; i < Movie.size(); i++) {
+			System.out.println(i + 1 + ". " + Movie.get(i).getMovieTitle());
+		}
+		int input = sc.nextInt();
+		while(input < 1 && input > Movie.size()) {	//input 1 to 7 will break the while loop
+			if (input >= 1 && input <= Movie.size()) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			input = sc.nextInt();
+		}
+		System.out.println("Movie Title : " + Movie.get(input-1).getMovieTitle());
+		System.out.println("Movie Status : " + Movie.get(input-1).getShowingStatus());
+		System.out.println("Movie Synopsis : " + Movie.get(input-1).getSynopsis());
+		System.out.println("Movie Director : " + Movie.get(input-1).getDirector());
+		System.out.print("Movie Cast : [");
+		for(int i =0; i< Movie.get(input-1).getCast().length; i++) {
+			System.out.print(Movie.get(input-1).getCast()[i] + ",");
+		}
+		System.out.println("]");
+		System.out.println("");
+		System.out.println("////////////////////////////////////////////////////");
+	}
+
+	public static boolean MovieGoerUILogin(){
+		//Login
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Login");
+		System.out.println("Username :");
+		String email = sc.next();
+		System.out.println("Password :");
+		String password = sc.next();
+		/*for (int i = 0; i < Customer.size(); i++) {
+			if(Customer.get(i).getUsername().equals(username) && Customer.get(i).getPassword().equals(password)) {
+				System.out.println("Login Successful");
+				System.out.println("");
+				System.out.println("////////////////////////////////////////////////////");
+				return true;
+			}
+		}*/
+		if (email.equals("customer") && password.equals("customer")) {
+			return true;
+		}
+		else{
+			System.out.println("Invalid Email or Password");
+			return false;
+		}
+	}
+
+	public static int MovieGoerUIMain(){
+		//Main Menu
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("MovieGoerUIMain");
+		System.out.println("1. View Movie Schedule");
+		System.out.println("2. View Movie Details");
+		System.out.println("3. Book Ticket");
+		System.out.println("4. View Booking History");
+		System.out.println("5. Top 5 Movies by Ticket Sold");
+		System.out.println("6. Top 5 Movies by Ratings");
+		System.out.println("7. Logout");
+		System.out.println("////////////////////////////////////////////////////");
+		int input = sc.nextInt();
+		while(input < 1 && input > 7) {	//input 1 to 5 will break the while loop
+			if (input >= 1 && input <= 7) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			input = sc.nextInt();
+		}
+		return input;
+	}
+}
+
+
+
+
+
+
+		/* 
+		switch (input) {
+			case 1:
+				System.out.println("Add Movie");
+				System.out.println("Movie Title :");
+				String title = sc.next();
+				System.out.println("Movie Status :");
+				String status = sc.next();
+				System.out.println("Movie Synopsis :");
+				String synopsis = sc.next();
+				System.out.println("Movie Director :");
+				String director = sc.next(); f 
+				System.out.println("Movie Cast :");
+				String cast = sc.next();
+				Movie.add(new Movie(title, status, synopsis, director, new String[] { cast }));
+				System.out.println("Movie Added");
+				System.out.println("");
+				break;
+			case 2:
+				//Update Movie
+				System.out.println("Update Movie");
+				System.out.println("Select Movie :");
+				for (int i = 0; i < Movie.size(); i++) {
+					System.out.println(i + 1 + ". " + Movie.get(i).getMovieTitle());
+				}
+
+
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			default:
+				break;
+		}
+		return input;*/
+		/*
+		//Insert a new review
+		Scanner sc = new Scanner(System.in);
+		for (Movie m : Movie) {
+			System.out.println(m.getMovieTitle());
+		}
+		//insert a new movie review
+		System.out.println("Enter Review for" +Movie.get(1).getMovieTitle());
+		//Scanner sc = new Scanner(System.in);
+		System.out.println("Enter Review: ");
+		String Review = sc.nextLine();
+		System.out.println("Enter Rating: ");
+		int Rating = sc.nextInt();
+		Movie.get(1).addReview(Review,Rating);
+		Movie.get(1).addReview(Review,Rating);
+
+		for (Review r : Movie.get(1).getReview()) {
+			System.out.println(r.getReviewText());
+		}*/
 
 		/* 
 		System.out.println("////////////////////////////////////////////////////");
@@ -93,158 +610,43 @@ public class Main {
 		System.out.println("3. Movie 3");
 		System.out.println("");
 		System.out.println("////////////////////////////////////////////////////");
+
 		*/
-	//}
 	
-	
-	static void Init() {
-		//Name, Number of Cinema
-		Cineplex[0] = new Cineplex("Golden Village");
-		Cineplex[1] = new Cineplex("Shaws");
-		Cineplex[2] = new Cineplex("Cathay");
-		
-		Cineplex[0].getCinema()[0].setLocation("GV @ Bedok");
-		Cineplex[0].getCinema()[1].setLocation("GV @ Jurong");
-		Cineplex[0].getCinema()[2].setLocation("GV @ Yishun");
-		
-		Cineplex[1].getCinema()[0].setLocation("Shaws @ Seletar");
-		Cineplex[1].getCinema()[1].setLocation("Shaws @ NEX");
-		Cineplex[1].getCinema()[2].setLocation("Shaws @ Paya Lebar");
-		
-		Cineplex[2].getCinema()[0].setLocation("Cathay @ West Mall");
-		Cineplex[2].getCinema()[1].setLocation("Cathay @ The Cathay");
-		Cineplex[2].getCinema()[2].setLocation("Cathay @ Funan");
+			
+		/*
+		//String Movie, int Room, String ShowTime
+		MovieSchedule ms = new MovieSchedule("Avengers", 0 ,0,"25/10/2022 13:00");
+		ms.getRoom().getSeat()[5].setAssigned(true);
+		for(int i=0;i<25; i++){
+			if (ms.getRoom().getSeat()[i].getAssigned() == false)
+				assign = "O";
+			else 
+				assign = "X";
+				System.out.print(ms.getRoom().getSeat()[i].getSeatID() + "(" + assign + ") ");
 
-		//Set Cathay @ Funan Room 2, Seat 0 to be assigned
-		Cineplex[2].getCinema()[2].getRoom()[2].getSeat()[0].setAssigned(true);
-		//Set Cathay @ Funan Room 1, Seat 24 to be assigned
-		Cineplex[2].getCinema()[2].getRoom()[1].getSeat()[24].setAssigned(true);
-		
-		//Preset Staff Data
-		x[0]= new Staff("Manager", 1000, true, "Tom", "tom@o", "1234");
-		x[1]= new Staff("Staff", 2010, false, "Dick", "dick@o", "4321");
-		x[2]= new Staff("Staff", 2011, true, "Harry", "harry@o", "5678");
-		x[3]= new Staff("Manager", 1002, false, "Jerry", "jerry@o", "8765");
-		x[4]= new Staff("Staff", 2009, true, "Spike", "spike@o", "1212");
-		
-		//Preset User Data
-		y[0]= new Customer("Bobby","bobby@g","9876","Student");
-		y[1]= new Customer("Parry","parry@g","5432","Senior Citizen");
-	}
-
-	public static int MainUI(){
-		System.out.println("////////////////////////////////////////////////////");
-		System.out.println("Centralized Movie Booking App");
-		System.out.println("Please select a cineplex:");
-		System.out.println("1. Admin Module");
-		System.out.println("2. Movie-goer Module");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("////////////////////////////////////////////////////");
-
-		Scanner sc = new Scanner(System.in);
-		int input = sc.nextInt();
-		while(input != 1 || input != 2) {	//input 1 or 2 will break the while loop
-			if (input == 1 || input == 2) {
-				break;
-			}
-			System.out.println("Invalid Input");
-			input = sc.nextInt();
-		}
-		return input;
-	}
-
-	public static int AdminUI1(){
-		Scanner sc = new Scanner(System.in);
-		System.out.println("////////////////////////////////////////////////////");
-		System.out.println("Admin Module Login");
-		System.out.println("Email :");
-		String email = sc.next();
-		System.out.println("Password :");
-		String password = sc.next();
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("////////////////////////////////////////////////////");
-		
-		for(int a=0;a<5;a++) {
-			if(email.equals(x[a].getEmail())) {
-				System.out.println(x[a].getPassword());
-				if(password.equals(x[a].getPassword()))
-					return 1;
-				else 
-					return 0;
+			if (i%5 == 4){
+				System.out.println();
 			}
 		}
-		return 0;
-	}
-	
-	public static int MovieGoerUI1() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("////////////////////////////////////////////////////");
-		System.out.println("Movie-goer Module Login");
-		System.out.println("1. Buy Ticker");
-		System.out.println("2. Login");
-		System.out.println("3. Register");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("////////////////////////////////////////////////////");
+		for (int i=0;i<3;i++) {
+			System.out.println(m[i].getMovieTitle() + " " +m[i].getSynopsis());
+		}*/
 		
-		int inputGo = sc.nextInt();
-		while(inputGo != 1 || inputGo != 2 || inputGo !=3) {	//input 1 or 2 will break the while loop
-			if (inputGo == 1 || inputGo == 2 || inputGo ==3) {
-				break;
-			}
-			System.out.println("Invalid Input");
-			inputGo = sc.nextInt();
-		}
-		return inputGo;
-	}
-	
-	public static int MovieGoerUI2(){
+
+		/*
+		//insert a new movie review
+		System.out.println("Enter Review for" + m[0].getMovieTitle());
+
 		Scanner sc = new Scanner(System.in);
-		System.out.println("////////////////////////////////////////////////////");
-		System.out.println("Movie-goer Module Login");
-		System.out.println("Email :");
-		String email = sc.next();
-		System.out.println("Password :");
-		String password = sc.next();
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("////////////////////////////////////////////////////");
-		
-		for(int a=0;a<100;a++) {
-			if(email.equals(y[a].getEmail())) {
-				System.out.println(y[a].getPassword());
-				if(password.equals(y[a].getPassword()))
-					return 1;
-				else 
-					return 0;
-			}
+		System.out.println("Enter Review: ");
+		String Review = sc.nextLine();
+		System.out.println("Enter Rating: ");
+		int Rating = sc.nextInt();
+		m[0].addReview(Review,Rating);
+		m[0].addReview(Review,Rating);
+
+		for (Review r : m[0].getReview()) {
+			System.out.println(r.getReviewText());
 		}
-		return 0;
-	}
-	
-	public static void MovieGoerUI3() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("////////////////////////////////////////////////////");
-		System.out.println("Movie-goer Module Register");
-		System.out.println("Please fill up accordingly:");
-		System.out.println("Name:");
-		String name=sc.next();
-		System.out.println("Email:");
-		String email=sc.next();
-		System.out.println("Password:");
-		String pass=sc.next();
-		System.out.println("Student/Senior Citizen/Others:");
-		String typeofCust=sc.next();
-		System.out.println("");
-		System.out.println("");
-		System.out.println("");
-		System.out.println("////////////////////////////////////////////////////");
-		y[count] = new Customer(name,email,pass,typeofCust);
-		count++;
-	}
-}
+		*/
