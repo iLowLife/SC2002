@@ -9,9 +9,9 @@ public class Cinema {
 	Cinema(int CinemaID){
 		this.CinemaID = CinemaID;
 		//this.NumOfRoom = NumOfRoom;
-		for (int i=0; i<NumOfRoom; i++) {
+		/*for (int i=0; i<NumOfRoom; i++) {
 			this.getRoom()[i] = new Room(i);
-		}
+		}*/
 
 	}
 	
