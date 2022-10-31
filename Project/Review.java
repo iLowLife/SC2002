@@ -1,32 +1,39 @@
-import java.util.*;
 public class Review {
 
 	private String reviewText;
 	private int Rating;
 	private String MovieName;
-	private String userID;
 
-    public Review(String reviewText, int Rating, String MovieName, String userID) {
-        this.reviewText = reviewText;
-        this.Rating = Rating;
-        this.MovieName = MovieName;
-		this.userID = userID;
+	public Review(String reviewText, int Rating, String MovieName) {
+		this.reviewText = reviewText;
+		this.Rating = Rating;
+		this.MovieName = MovieName;
 	}
-	public void getCustomer() {
-		// TODO - implement Review.getCustomer
-		return this.Customer;
+
+	public String getReviewText() {
+		return this.reviewText;
 	}
-    public int getRating() {
-		// TODO - implement Movie.getRating
-        return this.Rating;	
+
+	public int getRating() {
+		return this.Rating;
 	}
-    public String getReview() {
-		// TODO - implement Movie.getReview
-        return this.reviewText;
+
+	public String getMovieName() {
+		return this.MovieName;
 	}
-    public String getMovieName() {      
-        return this.MovieName;
-    }
+
+	public void setReviewText(String reviewText) {
+		this.reviewText = reviewText;
+	}
+
+	public void setRating(int Rating) {
+		this.Rating = Rating;
+	}
+
+	public void setMovieName(String MovieName) {
+		this.MovieName = MovieName;
+	}
+
 	public void rottenTomatoes(){
 		System.out.println("Enter your name: ");
 		Scanner scanner = new Scanner(System.in);
@@ -40,3 +47,4 @@ public class Review {
 		Scanner scanner2 = new Scanner(System.in);
 		String reviewText = scanner2.nextLine();
 	}
+}
