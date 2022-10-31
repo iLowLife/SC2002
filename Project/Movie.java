@@ -31,7 +31,8 @@ public class Movie {
 		this.NoOfReview=0;
 
 	}
-
+	// Movie Class should just be a BluePrint to create more movies, leave the getting user inputs on the main page
+	/*
 	public void getMovieDetails(){
 		System.out.println("Movie Title: " + MovieTitle);
 		//System.out.println("Record: " + Record); //WDYM
@@ -95,6 +96,7 @@ public class Movie {
 				break;
 		}
 	}
+	*/
 	
 	public void getRating() {
 		// TODO - implement Movie.getRating
