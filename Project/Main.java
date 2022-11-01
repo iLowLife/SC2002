@@ -58,7 +58,7 @@ public class Main {
 										//Delete Movie Schedule
 										//System.out.println("Delete Movie Schedule");
 										System.out.println("Delete Movie Schedule");
-										AdminUIViewMovie();
+										//AdminUIViewMovie();
 										break;
 									case 7:
 										//View Movie
@@ -329,7 +329,7 @@ public class Main {
 		System.out.println("////////////////////////////////////////////////////");
 	}
 
-	public static void AdminUIUpdateMovie(){
+	public static void AdminUIUpdateMovie(){ //Can improve to change 1 by 1 instead of all
 		//update movie
 		Scanner sc = new Scanner(System.in);
 		System.out.println("////////////////////////////////////////////////////");
@@ -405,6 +405,12 @@ public class Main {
 			System.out.print(Movie.get(input-1).getCast()[i] + ",");
 		}
 		System.out.println("]");
+		//print reviews
+		System.out.println("Movie Reviews :");
+		for(int i =0; i< Movie.get(input-1).getReview().size(); i++) {
+			System.out.println("Review: " + Movie.get(input-1).getReview().get(i).getReviewText() + " \nRating: " + Movie.get(input-1).getReview().get(i).getRating());
+		}
+
 		System.out.println("");
 		System.out.println("////////////////////////////////////////////////////");
 	}
@@ -430,14 +436,14 @@ public class Main {
 			input = sc.nextInt();
 		}
 		//Create new movie schedule object
-		System.out.println("Movie Title : " + Movie.get(input-1).getMovieTitle());
-		System.out.println("Movie Status : " + Movie.get(input-1).getShowingStatus());
-		System.out.println("Movie Synopsis : " + Movie.get(input-1).getSynopsis());
-		System.out.println("Movie Director : " + Movie.get(input-1).getDirector());
-		System.out.print("Movie Cast : [");
-		for(int i =0; i< Movie.get(input-1).getCast().length; i++) 
-			System.out.print(Movie.get(input-1).getCast()[i] + ",");
-		System.out.println("]");
+		//System.out.println("Movie Title : " + Movie.get(input-1).getMovieTitle());
+		//System.out.println("Movie Status : " + Movie.get(input-1).getShowingStatus());
+		//System.out.println("Movie Synopsis : " + Movie.get(input-1).getSynopsis());
+		//System.out.println("Movie Director : " + Movie.get(input-1).getDirector());
+		//System.out.print("Movie Cast : [");
+		//for(int i =0; i< Movie.get(input-1).getCast().length; i++) 
+		//	System.out.print(Movie.get(input-1).getCast()[i] + ",");
+		//System.out.println("]");
 
 		//Select Cineplex
 		int cineplex = CineplexDropDown();
@@ -451,7 +457,6 @@ public class Main {
 		String movieDate = sc.next();
 		System.out.println("Movie Time (HHMM) :");
 		String movieTime = sc.next();
-		
 		MovieSchedule.add(new MovieSchedule(Movie.get(input-1).getMovieTitle(), room-1 , Cineplex.get(cineplex-1).getCineplexCode() + (cinema-1) , movieDate + movieTime));
 		System.out.println("Movie Schedule Created");
 		System.out.println("");
