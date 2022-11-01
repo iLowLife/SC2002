@@ -397,7 +397,7 @@ public class Main {
 	}
 
 	public static void AdminUICreateMovieSchedule(){
-		//create movie schedule object
+		//create movie schedule object  
 		Scanner sc = new Scanner(System.in);
 		System.out.println("////////////////////////////////////////////////////");
 		System.out.println("Create Movie Schedule");
@@ -422,24 +422,24 @@ public class Main {
 		System.out.println("Movie Synopsis : " + Movie.get(input-1).getSynopsis());
 		System.out.println("Movie Director : " + Movie.get(input-1).getDirector());
 		System.out.print("Movie Cast : [");
-		for(int i =0; i< Movie.get(input-1).getCast().length; i++) {
+		for(int i =0; i< Movie.get(input-1).getCast().length; i++) 
 			System.out.print(Movie.get(input-1).getCast()[i] + ",");
-		}
 		System.out.println("]");
-		System.out.println("Movie Schedule :");
+
+		//Select Cineplex
+		int cineplex = CineplexDropDown();
 		//Select Cinema
-		System.out.println("Cinema Code (XXX):");
-		String cinemaCode = sc.next();
+		int cinema = CinemaDropDown(cineplex-1);
+		//Select Room
+		int room = RoomDropDown(cineplex-1, cinema-1);
+
 		//get Date and Time
 		System.out.println("Movie Date (YYYYMMDD):");
 		String movieDate = sc.next();
 		System.out.println("Movie Time (HHMM) :");
 		String movieTime = sc.next();
-		//System.out.println("Movie Type :");
-		//String movieType = sc.next();
-		//System.out.println("Movie Price :");
-		//double moviePrice = sc.nextDouble();
-		//MovieSchedule.add(new MovieSchedule(Movie.get(input-1).getMovieTitle(), movieDate + movieTime, Movie.get(input-1)));
+		
+		MovieSchedule.add(new MovieSchedule(Movie.get(input-1).getMovieTitle(), room-1 , Cineplex.get(cineplex-1).getCineplexCode() + (cinema-1) , movieDate + movieTime));
 		System.out.println("Movie Schedule Created");
 		System.out.println("");
 		System.out.println("////////////////////////////////////////////////////");
@@ -560,6 +560,18 @@ public class Main {
 		}
 		return input;
 	}
+	
+	public static int MovieGoerUIViewMovieSchedule(){
+		//View All Movie Schedule
+		for (int i=0; i < MovieSchedule.size(); i++) {
+			System.out.println("Movie Title : " + MovieSchedule.get(i).getMovie());
+			System.out.println("Cinema : " + MovieSchedule.get(i).getCinemaID());
+			System.out.println("Date : " + MovieSchedule.get(i).getShowTime());
+			System.out.println("");
+		}
+		return 0;
+	}
+	
 	/////////////////////////////////     Drop Down Boxes    //////////////////////////////////////
 	//drop down box for Movie
 	public static int DropDownMovie(){
@@ -605,6 +617,57 @@ public class Main {
 		int input = sc.nextInt();
 		while(input < 1 && input > MovieSchedule.size()) {
 			if (input >= 1 && input <= MovieSchedule.size()) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			input = sc.nextInt();
+		}
+		return input;
+	}
+
+	public static int CineplexDropDown(){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Select Cineplex :");
+		for (int i = 0; i < Cineplex.size(); i++) {
+			System.out.println(i + 1 + ". " + Cineplex.get(i).getName());
+		}
+		int input = sc.nextInt();
+		while(input < 1 && input > Cineplex.size()) {
+			if (input >= 1 && input <= Cineplex.size()) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			input = sc.nextInt();
+		}
+		return input;
+	}
+
+	public static int CinemaDropDown(int cineplex){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Select Cinema :");
+		for (int i = 0; i < Cineplex.get(cineplex).getCinema().size(); i++) {
+			System.out.println(i + 1 + ". " + Cineplex.get(cineplex).getCinema().get(i).getLocation());
+		}
+		int input = sc.nextInt();
+		while(input < 1 && input > Cineplex.get(cineplex).getCinema().size()) {
+			if (input >= 1 && input <= Cineplex.get(cineplex).getCinema().size()) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			input = sc.nextInt();
+		}
+		return input;
+	}
+
+	public static int RoomDropDown(int cineplex,int cinema ){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Select Room :");
+		for (int i = 0; i < Cineplex.get(cineplex).getCinema().get(cinema).getRoom().size(); i++) {
+			System.out.println(i + 1 + ". " + Cineplex.get(cineplex).getCinema().get(cinema).getRoom().get(i).getRoomNum());
+		}
+		int input = sc.nextInt();
+		while(input < 1 && input > Cineplex.get(cineplex).getCinema().get(cinema).getRoom().size()) {
+			if (input >= 1 && input <= Cineplex.get(cineplex).getCinema().get(cinema).getRoom().size()) {
 				break;
 			}
 			System.out.println("Invalid Input");
