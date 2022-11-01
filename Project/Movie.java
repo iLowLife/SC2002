@@ -1,25 +1,18 @@
 import java.util.*;
+
 public class Movie {
+
 	private String MovieTitle;
-	private String Record;
+	//private String Record;
 	private String ShowingStatus;
 	private String Synopsis;
 	private String Director;
-	private String ContentRating;
 	private String[] Cast;
-	private ArrayList<Review> Review=new ArrayList<Review>();//Creating arraylist  
+	//private ArrayList<Review> Review;// = new <ArrayList>Review();
+	private ArrayList<Review> Review=new ArrayList<Review>();//Creating arraylist    
+	private int NoOfReview;
+	public int NumOfMovies;
 
-	/*public void movieDetails(String MovieTitle, String Record, String ShowingStatus, String Synopsis, String Director, String ContentRating, String[] Cast, String[] Review) {
-		this.MovieTitle = MovieTitle;
-		this.Record = Record;
-		this.ShowingStatus = ShowingStatus;
-		this.Synopsis = Synopsis;
-		this.Director = Director;
-		this.ContentRating = ContentRating;
-		this.Cast = Cast;
-		//this.Review = Review;
-	}*/
-	
 	public Movie(String MovieTitle, String ShowingStatus, String Synopsis, String Director, String[] Cast) {
 		this.MovieTitle = MovieTitle;
 		//this.Record = Record;
@@ -31,73 +24,7 @@ public class Movie {
 		this.NoOfReview=0;
 
 	}
-	// Movie Class should just be a BluePrint to create more movies, leave the getting user inputs on the main page
-	/*
-	public void getMovieDetails(){
-		System.out.println("Movie Title: " + MovieTitle);
-		//System.out.println("Record: " + Record); //WDYM
-		System.out.println("Showing Status: " + ShowingStatus);
-		System.out.println("Synopsis: " + Synopsis);
-		System.out.println("Director: " + Director);
-		System.out.println("Content Rating: " + ContentRating);
-		System.out.println("Cast: " + Cast);
-	}
 
-	public void editDetails(){
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("What would you like to edit?");
-		System.out.println("1. Movie Title");
-		System.out.println("2. Showing Status");
-		System.out.println("3. Synopsis");
-		System.out.println("4. Director");
-		System.out.println("5. Content Rating");
-		System.out.println("6. Cast");
-		System.out.println("7. Exit");
-		
-		int choice = scanner.nextInt();
-		
-		switch(choice){
-			case 1:
-				System.out.println("Enter new Movie Title: ");
-				String newMovieTitle = scanner.nextLine();
-				MovieTitle = newMovieTitle;
-				break;
-			case 2:
-				System.out.println("Enter new Showing Status: ");
-				String newShowingStatus = scanner.nextLine();
-				ShowingStatus = newShowingStatus;
-				break;
-			case 3:
-				System.out.println("Enter Synopsis: ");
-				String newSynopsis = scanner.nextLine();
-				Synopsis = newSynopsis;
-				break;
-			case 4:
-				System.out.println("Enter Director: ");
-				String newDirector = scanner.nextLine();
-				Director = newDirector;
-				break;
-			case 5:
-				System.out.println("Enter Content Rating: ");
-				String newContentRating = scanner.nextLine();
-				ContentRating = newContentRating;
-				break;
-			case 6:
-				System.out.println("Enter total number of cast members: ");
-				int count = 0;
-				count = scanner.nextInt();
-				for(int i = 0; i < count; i++){
-					System.out.println("Enter cast member: ");
-					String newCast = scanner.nextLine();
-					Cast[i] = newCast;
-				}
-				break;
-			case 7:
-				break;
-		}
-	}
-	*/
-	
 	public void getRating() {
 		// TODO - implement Movie.getRating
 		throw new UnsupportedOperationException();
@@ -176,26 +103,28 @@ public class Movie {
 		return this.NoOfReview;
 	}
 	
-	
-	public void calRating() {
-		// TODO - implement Movie.calRating
-        int sum = 0;
-        for(int i=0; i<Review.length; i++) {
-			int sum1 = sum + getRating(); //?????
+	public void addMovie(){
+		/*Scanner sc = new Scanner(System.in);
+		System.out.println("Enter Movie Title: ");
+		String MovieTitle = sc.nextLine();
+		System.out.println("Enter Showing Status: ");
+		String ShowingStatus = sc.nextLine();
+		System.out.println("Enter Synopsis: ");
+		String Synopsis = sc.nextLine();
+		System.out.println("Enter Director: ");
+		String Director = sc.nextLine();
+		System.out.println("Enter Cast: ");
+		String[] Cast = new String[5];
+		for(int i=0;i<5;i++){
+			Cast[i] = sc.nextLine();
 		}
-		float average = sum/Review.length;
-		//System.out.println("Average rating is: " + average);
-        }
-
-    public void ticketSales() {
-		// TODO - implement Movie.ticketSales
-		
+		Movie m = new Movie(MovieTitle,ShowingStatus,Synopsis,Director,Cast);
+		//NumOfMovies++;*/
 	}
-   public void addReview(String review,int Rating){
-	System.out.println("UwU");
-	this.Review.add(new Review(review,Rating,this.MovieTitle));
-	this.NoOfReview++;
-    }
-    
 
-}  
+	public void addReview(String review,int Rating){
+		System.out.println("UwU");
+		this.Review.add(new Review(review,Rating,this.MovieTitle));
+		this.NoOfReview++;
+	}
+}
