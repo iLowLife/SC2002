@@ -183,26 +183,24 @@ public class Main {
 
 	static void Init() {
 		//Name, Number of Cinema
-		//Create Cineplex Objects 
-		Cineplex.add( new Cineplex("Golden Village"));
-		Cineplex.add( new Cineplex("Shaws"));
-		Cineplex.add( new Cineplex("Cathay"));
+		//Create Cineplex Objects 						//Cinema Code
+		Cineplex.add( new Cineplex("Golden Village", "GV"));			//GV
+		Cineplex.add( new Cineplex("Shaws","SW"));				//SW
+		Cineplex.add( new Cineplex("Cathay","CT"));				//CT
 		
-		/* 
 		//Create Cinema Objects and set Locations
-		Cineplex[0].getCinema()[0].setLocation("GV @ Bedok");
-		Cineplex[0].getCinema()[1].setLocation("GV @ Jurong");
-		Cineplex[0].getCinema()[2].setLocation("GV @ Yishun");
+		Cineplex.get(0).getCinema().get(0).setLocation("GV @ Bedok");	//GV1
+		Cineplex.get(0).getCinema().get(1).setLocation("GV @ Jurong");	//GV2
+		Cineplex.get(0).getCinema().get(2).setLocation("GV @ Yishun");	//GV3
 		
-		Cineplex[1].getCinema()[0].setLocation("Shaws @ Seletar");
-		Cineplex[1].getCinema()[1].setLocation("Shaws @ NEX");
-		Cineplex[1].getCinema()[2].setLocation("Shaws @ Paya Lebar");
+		Cineplex.get(1).getCinema().get(0).setLocation("Shaws @ Seletar");
+		Cineplex.get(1).getCinema().get(1).setLocation("Shaws @ NEX");
+		Cineplex.get(1).getCinema().get(2).setLocation("Shaws @ Paya Lebar");
 		
-		Cineplex[2].getCinema()[0].setLocation("Cathay @ West Mall");
-		Cineplex[2].getCinema()[1].setLocation("Cathay @ The Cathay");
-		Cineplex[2].getCinema()[2].setLocation("Cathay @ Funan");
-		*/
-
+		Cineplex.get(2).getCinema().get(0).setLocation("Cathay @ West Mall");
+		Cineplex.get(2).getCinema().get(1).setLocation("Cathay @ The Cathay");
+		Cineplex.get(2).getCinema().get(2).setLocation("Cathay @ Funan");
+		
 		//Create Movie Objects
 		Movie.add(new Movie("Avengers: Endgame", "Now Showing", "The grave course of events set in motion by Thanos that wiped out half the universe and fractured the Avengers ranks compels the remaining Avengers to take one final stand in Marvel Studios' grand conclusion to twenty-two films.", "Anthony Russo, Joe Russo", new String[] { "Robert Downey Jr.", "Chris Evans", "Mark Ruffalo", "Chris Hemsworth", "Scarlett Johansson" }));
 		Movie.add(new Movie("Captain Marvel", "Now Showing", "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien", "Anna Boden, Ryan Fleck", new String[] { "Brie Larson", "Samuel L. Jackson", "Ben Mendelsohn", "Jude Law", "Annette Bening" }));
@@ -211,6 +209,8 @@ public class Main {
 	
 		Staff.add(new Staff("Manager", 0, false, "Chee Yong", "cy@gmail.com", "password"));
 		Staff.add(new Staff("Employee", 1, false, "Wilfred", "wy@gmail.com", "password"));
+		Staff.add(new Staff("Special", 0, false, "admin", "admin", "admin"));
+		
 		
 		Movie.get(1).addReview("Test",10);
 		Movie.get(1).addReview("Test",4);
