@@ -21,67 +21,78 @@ public class Main {
 			int input = MainUI();
 			if(input == 1){
 				//Admin Stuff
-				if (AdminUILogin()) { 
-					int r = 1;
-					while(r > 0 && r < 11){ //r should be within 1 to 10
-						r = AdminUIMain();
-						switch(r){			//11 to logout
-							case 1:
-								//Add Movie
-								System.out.println("Add Movie");
-								AdminUIAddMovie();
-								break;
-							case 2:	//case 1 to 3, Create, Update and Delete Movie
-								//Update Movie
-								System.out.println("Update Movie");
-								AdminUIUpdateMovie();
-								break;
-							case 3:
-								//Delete Movie
-								System.out.println("Delete Movie");
-								AdminUIRemoveMovie();
-								break;
-							case 4: //case 4 to 6 create, update and delete Movie Schedule
-								//Create Movie Schedule
-								System.out.println("Create Movie Schedule");
-								AdminUICreateMovieSchedule();
-								break;
-							case 5:
-								//Update Movie Schedule
-								System.out.println("Update Movie Schedule");
-								break;
-							case 6:
-								//Delete Movie Schedule
-								//System.out.println("Delete Movie Schedule");
-								System.out.println("Delete Movie Schedule");
-								AdminUIViewMovie();
-								break;
-							case 7:
-								//View Movie
-								System.out.println("View Movie");
-								AdminUIViewMovie();
-								break;
-							case 8:
-								//View Movie Schedule
-								System.out.println("View Movie Schedule");
-								//AdminUIViewMovieSchedule();
-								break;
-							case 9:
-								//View Top 5 Movies
-								System.out.println("View Top 5 Movies");
-								//AdminUIViewTop5Movies();
-								break;
-							case 10:
-								//View Top 5 Movies
-								System.out.println("View Top 5 Movies");
-								//AdminUIViewTop5Movies();
-								break;
-							case 11:
-								//Logout
-								System.out.println("Logging out...");
-								break;
+				int a = 1;
+				while (a > 0 && a < 2){
+					a = AdminUI();
+					if(a == 1){
+						if (AdminUILogin()) { 
+							int r = 1;
+							while(r > 0 && r < 11){ //r should be within 1 to 10
+								r = AdminUIMain();
+								switch(r){			//11 to logout
+									case 1:
+										//Add Movie
+										System.out.println("Add Movie");
+										AdminUIAddMovie();
+										break;
+									case 2:	//case 1 to 3, Create, Update and Delete Movie
+										//Update Movie
+										System.out.println("Update Movie");
+										AdminUIUpdateMovie();
+										break;
+									case 3:
+										//Delete Movie
+										System.out.println("Delete Movie");
+										AdminUIRemoveMovie();
+										break;
+									case 4: //case 4 to 6 create, update and delete Movie Schedule
+										//Create Movie Schedule
+										System.out.println("Create Movie Schedule");
+										AdminUICreateMovieSchedule();
+										break;
+									case 5:
+										//Update Movie Schedule
+										System.out.println("Update Movie Schedule");
+										break;
+									case 6:
+										//Delete Movie Schedule
+										//System.out.println("Delete Movie Schedule");
+										System.out.println("Delete Movie Schedule");
+										AdminUIViewMovie();
+										break;
+									case 7:
+										//View Movie
+										System.out.println("View Movie");
+										AdminUIViewMovie();
+										break;
+									case 8:
+										//View Movie Schedule
+										System.out.println("View Movie Schedule");
+										//AdminUIViewMovieSchedule();
+										break;
+									case 9:
+										//View Top 5 Movies
+										System.out.println("View Top 5 Movies");
+										//AdminUIViewTop5Movies();
+										break;
+									case 10:
+										//View Top 5 Movies
+										System.out.println("View Top 5 Movies");
+										//AdminUIViewTop5Movies();
+										break;
+									case 11:
+										//Logout
+										System.out.println("Logging out...");
+										break;
+								}
+								//Loop this function unless user logout
+							}
 						}
-						//Loop this function unless user logout
+					}
+					else if(a == 2){
+						//add new employee
+						System.out.println("Add new employee");
+						AdminUIAddNewEmployee();
 					}
 				}
 			}
@@ -185,11 +196,15 @@ public class Main {
 		Cineplex[2].getCinema()[1].setLocation("Cathay @ The Cathay");
 		Cineplex[2].getCinema()[2].setLocation("Cathay @ Funan");
 		*/
+
 		//Create Movie Objects
 		Movie.add(new Movie("Avengers: Endgame", "Now Showing", "The grave course of events set in motion by Thanos that wiped out half the universe and fractured the Avengers ranks compels the remaining Avengers to take one final stand in Marvel Studios' grand conclusion to twenty-two films.", "Anthony Russo, Joe Russo", new String[] { "Robert Downey Jr.", "Chris Evans", "Mark Ruffalo", "Chris Hemsworth", "Scarlett Johansson" }));
 		Movie.add(new Movie("Captain Marvel", "Now Showing", "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien", "Anna Boden, Ryan Fleck", new String[] { "Brie Larson", "Samuel L. Jackson", "Ben Mendelsohn", "Jude Law", "Annette Bening" }));
 		Movie.add(new Movie("Alita: Battle Angel", "Now Showing", "When Alita awakens with no memory of who she is in a future world she does not recognize, she is taken in by Ido, a compassionate doctor who realizes that somewhere in this abandoned cyborg shell is the heart and soul", "Robert Rodriguez", new String[] { "Rosa Salazar", "Christoph Waltz", "Jennifer Connelly", "Mahershala Ali", "Ed Skrein" }));
 		Movie.add(new Movie("How to Train Your Dragon: The Hidden World", "Now Showing", "As Hiccup fulfills his dream of creating a peaceful dragon utopia, Toothless' discovery of an untamed, elusive mate draws the Night Fury away. When danger mounts at home and Hiccup's reign as village chief is tested, both dragon and rider must make impossible decisions to save their kind.", "Dean DeBlois", new String[] { "Jay Baruchel", "America Ferrera", "F. Murray Abraham", "Cate Blanchett", "Craig Ferguson" }));
+	
+		Staff.add(new Staff("Manager", 0, false, "Chee Yong", "cy@gmail.com", "password"));
+		Staff.add(new Staff("Employee", 1, false, "Wilfred", "wy@gmail.com", "password"));
 	}
 
 	public static int MainUI(){
@@ -214,6 +229,26 @@ public class Main {
 	}
 
 /////////////////////////////   ADMIN UI STARTS HERE      /////////////////////////////
+	public static int AdminUI(){
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Admin Module");
+		System.out.println("Please select an option:");
+		System.out.println("1. Login");
+		System.out.println("2. Add New Employee");
+		System.out.println("3. Back");
+		System.out.println("");
+		System.out.println("////////////////////////////////////////////////////");
+		Scanner sc = new Scanner(System.in);
+		int input = sc.nextInt();
+		while(input < 1 && input > 3) {	//input 1,2,3 will break the while loop
+			if (input >= 1 && input <= 3) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			input = sc.nextInt();
+		}
+		return input;
+	}
 
 	public static boolean AdminUILogin(){
 		Scanner sc = new Scanner(System.in);
@@ -224,13 +259,14 @@ public class Main {
 		System.out.print("Password :");
 		String password = sc.next();
 		System.out.println("////////////////////////////////////////////////////");
-		if (email.equals("admin") && password.equals("admin")) {
-			return true;
+		//compare email and password to staff object
+		for(int i = 0; i < Staff.size(); i++){
+			if(Staff.get(i).getEmail().toUpperCase().equals(email.toUpperCase()) && Staff.get(i).getPassword().equals(password)){
+				return true;
+			}
 		}
-		else{
-			System.out.println("Invalid Email or Password");
-			return false;
-		}
+		System.out.println("Invalid Email or Password");
+		return false;
 	}
 
 	public static int AdminUIMain(){
@@ -286,17 +322,7 @@ public class Main {
 		System.out.println("////////////////////////////////////////////////////");
 		System.out.println("Update Movie");
 		System.out.println("Select Movie :");
-		for (int i = 0; i < Movie.size(); i++) {
-			System.out.println(i + 1 + ". " + Movie.get(i).getMovieTitle());
-		}
-		int input = sc.nextInt();
-		while(input < 1 && input > Movie.size()) {	//input 1 to 7 will break the while loop
-			if (input >= 1 && input <= Movie.size()) {
-				break;
-			}
-			System.out.println("Invalid Input");
-			input = sc.nextInt();
-		}
+		int input = DropDownMovie();
 		System.out.println("Movie Title :");
 		String title = sc.next();
 		System.out.println("Movie Status :");
@@ -379,7 +405,7 @@ public class Main {
 		//Select movie only where status is "Now Showing" or "Coming Soon"
 		for (int i = 0; i < Movie.size(); i++) {
 			if(Movie.get(i).getShowingStatus().equals("Now Showing") || Movie.get(i).getShowingStatus().equals("Coming Soon")) {
-				System.out.println(i + 1 + ". " + Movie.get(i).getMovieTitle());
+				System.out.println(i + 1 + ". " + Movie.get(i).getMovieTitle()); //Movie ID : Movie Title
 			}
 		}
 		int input = sc.nextInt();
@@ -401,24 +427,45 @@ public class Main {
 		}
 		System.out.println("]");
 		System.out.println("Movie Schedule :");
-		System.out.println("Cinema Code :");
+		//Select Cinema
+		System.out.println("Cinema Code (XXX):");
 		String cinemaCode = sc.next();
-		System.out.println("Cinema Class :");
-		String cinemaClass = sc.next();
-		System.out.println("Movie Date :");
+		//get Date and Time
+		System.out.println("Movie Date (YYYYMMDD):");
 		String movieDate = sc.next();
-		System.out.println("Movie Time :");
+		System.out.println("Movie Time (HHMM) :");
 		String movieTime = sc.next();
-		System.out.println("Movie Type :");
-		String movieType = sc.next();
-		System.out.println("Movie Price :");
-		double moviePrice = sc.nextDouble();
-		//MovieSchedule.add(new MovieSchedule(cinemaCode, cinemaClass, movieDate, movieTime, movieType, moviePrice, Movie.get(input-1)));
+		//System.out.println("Movie Type :");
+		//String movieType = sc.next();
+		//System.out.println("Movie Price :");
+		//double moviePrice = sc.nextDouble();
+		//MovieSchedule.add(new MovieSchedule(Movie.get(input-1).getMovieTitle(), movieDate + movieTime, Movie.get(input-1)));
 		System.out.println("Movie Schedule Created");
 		System.out.println("");
 		System.out.println("////////////////////////////////////////////////////");
+	}
 
-
+	public static void AdminUIAddNewEmployee(){
+		//add new staff
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Add New Staff");
+		System.out.print("Staff Name :");
+		String name = sc.next();
+		System.out.print("Staff Title :");
+		String title = sc.next();
+		int staffID = Staff.size() + 1;
+		System.out.println("Staff ID :" + staffID);
+		System.out.print("Staff Shift :");
+		boolean shift = sc.nextBoolean();
+		System.out.print("Staff Email :");
+		String email = sc.next();
+		System.out.print("Staff Password :");
+		String password = sc.next();
+		Staff.add(new Staff(title, staffID, shift, name, email, password));
+		System.out.println("Staff Added");
+		System.out.println("");
+		System.out.println("////////////////////////////////////////////////////");
 	}
 
 /////////////////////////////    MOVIE GOER UI STARTS HERE      /////////////////////////////
@@ -450,18 +497,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("////////////////////////////////////////////////////");
 		System.out.println("View Movie");
-		System.out.println("Select Movie :");
-		for (int i = 0; i < Movie.size(); i++) {
-			System.out.println(i + 1 + ". " + Movie.get(i).getMovieTitle());
-		}
-		int input = sc.nextInt();
-		while(input < 1 && input > Movie.size()) {	//input 1 to 7 will break the while loop
-			if (input >= 1 && input <= Movie.size()) {
-				break;
-			}
-			System.out.println("Invalid Input");
-			input = sc.nextInt();
-		}
+		int input = DropDownMovie();
 		System.out.println("Movie Title : " + Movie.get(input-1).getMovieTitle());
 		System.out.println("Movie Status : " + Movie.get(input-1).getShowingStatus());
 		System.out.println("Movie Synopsis : " + Movie.get(input-1).getSynopsis());
@@ -517,6 +553,58 @@ public class Main {
 		int input = sc.nextInt();
 		while(input < 1 && input > 7) {	//input 1 to 5 will break the while loop
 			if (input >= 1 && input <= 7) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			input = sc.nextInt();
+		}
+		return input;
+	}
+	/////////////////////////////////     Drop Down Boxes    //////////////////////////////////////
+	//drop down box for Movie
+	public static int DropDownMovie(){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Select Movie :");
+		for (int i = 0; i < Movie.size(); i++) {
+			System.out.println(i + 1 + ". " + Movie.get(i).getMovieTitle());
+		}
+		int input = sc.nextInt();
+		while(input < 1 && input > Movie.size()) {
+			if (input >= 1 && input <= Movie.size()) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			input = sc.nextInt();
+		}
+		return input;
+	}
+
+	public static int DropDownStaff(){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Select Staff :");
+		for (int i = 0; i < Staff.size(); i++) {
+			System.out.println(i + 1 + ". " + Staff.get(i).getName());
+		}
+		int input = sc.nextInt();
+		while(input < 1 && input > Staff.size()) {
+			if (input >= 1 && input <= Staff.size()) {
+				break;
+			}
+			System.out.println("Invalid Input");
+			input = sc.nextInt();
+		}
+		return input;
+	}
+
+	public static int DropDownMovieSchedule(){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Select Movie Schedule :");
+		for (int i = 0; i < MovieSchedule.size(); i++) {
+			System.out.println(i + 1 + ". " + MovieSchedule.get(i).getMovie());
+		}
+		int input = sc.nextInt();
+		while(input < 1 && input > MovieSchedule.size()) {
+			if (input >= 1 && input <= MovieSchedule.size()) {
 				break;
 			}
 			System.out.println("Invalid Input");
