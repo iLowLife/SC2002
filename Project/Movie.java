@@ -9,9 +9,9 @@ public class Movie {
 	private String Director;
 	private String[] Cast;
 	//private ArrayList<Review> Review;// = new <ArrayList>Review();
-	private ArrayList<Review> Review=new ArrayList<Review>();//Creating arraylist    
-	private int NoOfReview;
-	public int NumOfMovies;
+	private ArrayList<Review> Review=new ArrayList<Review>();//Creating arraylist       
+	private int NumReview;
+	private double Ratings;
 
 	public Movie(String MovieTitle, String ShowingStatus, String Synopsis, String Director, String[] Cast) {
 		this.MovieTitle = MovieTitle;
@@ -21,13 +21,16 @@ public class Movie {
 		this.Director = Director;
 		this.Cast = Cast;
 		//this.NumOfMovies++;
-		this.NoOfReview=0;
+		//this.NoOfReview=0;
+		this.NumReview=0;
+		this.Ratings=-1;
 
 	}
 
-	public void getRating() {
+	public double getRating() {
 		// TODO - implement Movie.getRating
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
+		return this.Ratings;
 	}
 
 	public void calRating() {
@@ -123,8 +126,21 @@ public class Movie {
 	}
 
 	public void addReview(String review,int Rating){
-		System.out.println("UwU");
-		this.Review.add(new Review(review,Rating,this.MovieTitle));
-		this.NoOfReview++;
+	//System.out.println("UwU");
+	this.Review.add(new Review(review,Rating,this.MovieTitle));
+	//this.NoOfReview++;
+	this.NumReview++;
+	
+	double sum=0;
+	double avg=0;
+	
+	for(int y=0; y<Review.size();y++)
+	{
+		sum= sum+ this.Review.get(y).getRating();
+
 	}
+	avg=sum/Review.size();
+	System.out.println(avg);
+	this.Ratings=avg;
+    }
 }
