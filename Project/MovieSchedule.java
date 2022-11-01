@@ -1,3 +1,8 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class MovieSchedule {
 		//XXXYYYYMMDDhhmm (Y : year, M : month, D : day, h : hour, m : minutes, XXX : cinema code in letters)
 	private String Movie;
@@ -32,6 +37,29 @@ public class MovieSchedule {
 
 	public Room getRoom() {
 		return this.Room;
+	}
+
+	public Date getDateTime(){
+		String sDate1 = this.ShowTime;
+		Date date1 = null;
+		try {
+			date1 = new SimpleDateFormat("YYYYMMDDhhmm").parse(sDate1);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return date1;
+	}
+
+	public String getDate() throws ParseException{ //YYYYMMDD
+		String Year = this.ShowTime.substring(0, 4);
+		String Month = this.ShowTime.substring(4, 6);
+		String Day = this.ShowTime.substring(6, 8);
+		String Date =  Day + "/"+ Month + "/"+ Year;
+		return Date;
+	}
+
+	public String getTime(){
+		return this.ShowTime.substring(8, 12);
 	}
 
 	//Setter
