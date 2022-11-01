@@ -901,25 +901,29 @@ public class Main {
 			values1[i]=Movie.get(i).getMovieTitle();
 			values2[i]=Movie.get(i).getRating();
 		}
-		int min;
-		double temp;
 
-		/*for(int x=0;x<Movie.size();x++){
-			min=x;
-			for(int scan=x+1;scan<Movie.size();scan++){
-				if(values2[scan].compareTo(values2[min])>0)
-					min=scan;
+		insertionSort(values2,values1);
+		
+		for(int i=0;i<5;i++) {
+			System.out.println(values1[i]);
+			System.out.println(values2[i]);
+			
+		}
+		return 1;
+	}
+	public static void insertionSort(double[] arr,String[] arr1) {
+		for(int i=1;i<arr.length;i++) {
+			double ratingScore=arr[i];
+			String movieName=arr1[i];
+			int j=i;
+			while(j>0&& arr[j-1]<ratingScore) {
+				arr[j]=arr[j-1];
+				arr1[j]=arr1[j-1];
+				j--;
 			}
-			temp=values2[min];
-			values2[min]=values2[x];
-			values2[x]=temp;
-		}
-		for(int i=0;i<Movie.size();i++) {
-			System.out.println(values[i]);
-		}
-		*/
-
-		return 0;
+			arr[j]=ratingScore;
+			arr1[j]=movieName;
+		}	
 	}
 }
 		//so
