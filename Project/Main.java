@@ -207,18 +207,51 @@ public class Main {
 		Movie.add(new Movie("Captain Marvel", "Now Showing", "Carol Danvers becomes one of the universe's most powerful heroes when Earth is caught in the middle of a galactic war between two alien", "Anna Boden, Ryan Fleck", new String[] { "Brie Larson", "Samuel L. Jackson", "Ben Mendelsohn", "Jude Law", "Annette Bening" }));
 		Movie.add(new Movie("Alita: Battle Angel", "Now Showing", "When Alita awakens with no memory of who she is in a future world she does not recognize, she is taken in by Ido, a compassionate doctor who realizes that somewhere in this abandoned cyborg shell is the heart and soul", "Robert Rodriguez", new String[] { "Rosa Salazar", "Christoph Waltz", "Jennifer Connelly", "Mahershala Ali", "Ed Skrein" }));
 		Movie.add(new Movie("How to Train Your Dragon: The Hidden World", "Now Showing", "As Hiccup fulfills his dream of creating a peaceful dragon utopia, Toothless' discovery of an untamed, elusive mate draws the Night Fury away. When danger mounts at home and Hiccup's reign as village chief is tested, both dragon and rider must make impossible decisions to save their kind.", "Dean DeBlois", new String[] { "Jay Baruchel", "America Ferrera", "F. Murray Abraham", "Cate Blanchett", "Craig Ferguson" }));
-	
+		Movie.add(new Movie("Frozen", "Now Showing", "Frozen is a 2013 American computer-animated musical fantasy film produced by Walt Disney Animation Studios as their 53rd film. Loosely based on Hans Christian Andersen's fairy tale The Snow Queen (1844), it was directed by Chris Buck and Jennifer Lee, and written by Lee,[a] and Shane Morris.","Chris Buck, Jennifer Lee", new String[] { "Kristen Bell", "Idina Menzel", "Jonathan Groff", "Josh Gad", "Santino Fontana" }));
+		Movie.add(new Movie("The Lion King", "End of Showing", "The Lion King is a 1994 American animated epic musical film produced by Walt Disney Feature Animation and released by Walt Disney Pictures. It is the 32nd Disney animated feature film, and the fifth animated film produced during a period known as the Disney Renaissance.","Roger Allers, Rob Minkoff", new String[] { "Matthew Broderick", "Jeremy Irons", "James Earl Jones", "Whoopi Goldberg", "Cheech Marin" }));
+		Movie.add(new Movie("The Incredibles", "End of Showing", "The Incredibles is a 2004 American computer-animated superhero film produced by Pixar Animation Studios and released by Walt Disney Pictures. It is the fifth film produced by Pixar.","Brad Bird", new String[] { "Craig T. Nelson", "Holly Hunter", "Samuel L. Jackson", "Jason Lee", "Wallace Shawn" }));
+		Movie.add(new Movie("Toy Story 4", "Coming Soon", "Woody has always been confident about his place in the world and that his priority is taking care of his kid, whether that's Andy or Bonnie. But when Bonnie adds a reluctant new toy called 'Forky' to her room, a road trip adventure alongside old and new friends will show Woody how big the world can be for a toy.","Josh Cooley", new String[] { "Tom Hanks", "Tim Allen", "Annie Potts", "Tony Hale", "Keegan-Michael Key" }));
+		Movie.add(new Movie("Aladdin", "Coming Soon", "A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecracking genie while a power-hungry Grand Vizier vies for the same lamp that has the power to make their deepest wishes come true.","Guy Ritchie", new String[] { "Will Smith", "Mena Massoud", "Naomi Scott", "Marwan Kenzari", "Navid Negahban" }));
+
+		//Create Staff Objects
 		Staff.add(new Staff("Manager", 0, false, "Chee Yong", "cy@gmail.com", "password"));
 		Staff.add(new Staff("Employee", 1, false, "Wilfred", "wy@gmail.com", "password"));
 		Staff.add(new Staff("Special", 0, false, "admin", "admin", "admin"));
 		
+		//Create Reviews Objects
+		Movie.get(0).addReview("Test",10);
+		Movie.get(0).addReview("Test",10);
+		Movie.get(0).addReview("Test",9);
+		Movie.get(0).addReview("Test",9);
+		Movie.get(0).addReview("Test",10);
+
 		Movie.get(1).addReview("Test",10);
 		Movie.get(1).addReview("Test",4);
 		Movie.get(1).addReview("Test",6);
 		Movie.get(1).addReview("Test",8);
 		Movie.get(1).addReview("Test",5);
 
-		Customer.add(new Customer("Cust1", "cust1@gmail.com", "password", "elderly"));
+		Movie.get(2).addReview("Test",2);
+		Movie.get(2).addReview("Test",1);
+		Movie.get(2).addReview("Test",1);
+		Movie.get(2).addReview("Test",1);
+		Movie.get(2).addReview("Test",1);
+
+		Movie.get(3).addReview("Test",6);
+		Movie.get(3).addReview("Test",6);
+		Movie.get(3).addReview("Test",6);
+		Movie.get(3).addReview("Test",5);
+		Movie.get(3).addReview("Test",5);
+
+		Movie.get(4).addReview("Test",4);
+		Movie.get(4).addReview("Test",4);
+		Movie.get(4).addReview("Test",4);
+		Movie.get(4).addReview("Test",5);
+		Movie.get(4).addReview("Test",5);
+
+		//Create Customer Objects
+		Customer.add(new Customer("Cust1", "1", "1", "elderly"));
+		Customer.add(new Customer("Cust2", "2", "2", "adult"));
 	}
 
 	public static int MainUI(){
@@ -407,6 +440,8 @@ public class Main {
 			System.out.print(Movie.get(input-1).getCast()[i] + ",");
 		}
 		System.out.println("]");
+		//print movie rating
+		System.out.println("Movie Rating : " + Movie.get(input-1).getRating());
 		//print reviews
 		System.out.println("Movie Reviews :");
 		for(int i =0; i< Movie.get(input-1).getReview().size(); i++) {
@@ -552,6 +587,8 @@ public class Main {
 			System.out.print(Movie.get(input-1).getCast()[i] + ",");
 		}
 		System.out.println("]");
+		//print movie rating
+		System.out.println("Movie Rating : " + Movie.get(input-1).getRating());
 		//print reviews
 		System.out.println("Movie Reviews :");
 		for(int i =0; i< Movie.get(input-1).getReview().size(); i++) {
@@ -560,7 +597,7 @@ public class Main {
 		System.out.println("");
 		System.out.println("////////////////////////////////////////////////////");
 	}
-
+	
 	public static boolean MovieGoerUILogin(){
 		//Login
 		Scanner sc = new Scanner(System.in);
