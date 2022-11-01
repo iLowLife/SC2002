@@ -22,7 +22,7 @@ public class Main {
 			if(input == 1){
 				//Admin Stuff
 				int a = 1;
-				while (a > 0 && a < 2){
+				while (a > 0 && a < 3){
 					a = AdminUI();
 					if(a == 1){
 						if (AdminUILogin()) { 
@@ -79,6 +79,7 @@ public class Main {
 										//View Top 5 Movies
 										System.out.println("View Top 5 Movies");
 										//AdminUIViewTop5Movies();
+										GetMovieRatings();
 										break;
 									case 11:
 										//Logout
@@ -93,6 +94,11 @@ public class Main {
 						//add new employee
 						System.out.println("Add new employee");
 						AdminUIAddNewEmployee();
+					}
+					else if(a==3) {
+						//remove employee
+						System.out.println("Delete employee");
+						AdminUIDelEmployee();
 					}
 				}
 			}
@@ -205,6 +211,12 @@ public class Main {
 	
 		Staff.add(new Staff("Manager", 0, false, "Chee Yong", "cy@gmail.com", "password"));
 		Staff.add(new Staff("Employee", 1, false, "Wilfred", "wy@gmail.com", "password"));
+		
+		Movie.get(1).addReview("Test",10);
+		Movie.get(1).addReview("Test",4);
+		Movie.get(1).addReview("Test",6);
+		Movie.get(1).addReview("Test",8);
+		Movie.get(1).addReview("Test",5);
 	}
 
 	public static int MainUI(){
@@ -235,13 +247,14 @@ public class Main {
 		System.out.println("Please select an option:");
 		System.out.println("1. Login");
 		System.out.println("2. Add New Employee");
-		System.out.println("3. Back");
+		System.out.println("3. Remove Employee"); //include removing of account
+		System.out.println("4. Back");
 		System.out.println("");
 		System.out.println("////////////////////////////////////////////////////");
 		Scanner sc = new Scanner(System.in);
 		int input = sc.nextInt();
-		while(input < 1 && input > 3) {	//input 1,2,3 will break the while loop
-			if (input >= 1 && input <= 3) {
+		while(input < 1 && input > 4) {	//input 1,2,3 will break the while loop
+			if (input >= 1 && input <= 4) {
 				break;
 			}
 			System.out.println("Invalid Input");
@@ -467,6 +480,24 @@ public class Main {
 		System.out.println("");
 		System.out.println("////////////////////////////////////////////////////");
 	}
+	
+	public static void AdminUIDelEmployee(){
+		//add new staff
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Delete Staff"); //remove the staff if the staff left the company
+		System.out.print("Staff email :");
+		String staffEmail = sc.next();
+		for(int i = 0; i < Staff.size(); i++){
+			if(Staff.get(i).getEmail().toUpperCase().equals(staffEmail.toUpperCase())){
+				Staff.remove(i);
+			}
+		}
+		
+		System.out.println("Staff Deleted");
+		System.out.println("");
+		System.out.println("////////////////////////////////////////////////////");
+	}
 
 /////////////////////////////    MOVIE GOER UI STARTS HERE      /////////////////////////////
 
@@ -674,6 +705,12 @@ public class Main {
 			input = sc.nextInt();
 		}
 		return input;
+	}
+	
+	public static int GetMovieRatings() {
+		System.out.println(Movie.get(1).getMovieTitle());
+		System.out.println(Movie.get(1).getRating());
+		return 1;
 	}
 }
 
