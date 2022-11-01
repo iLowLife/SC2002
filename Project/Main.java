@@ -2,6 +2,7 @@
 
 import java.util.Iterator;
 import java.util.Scanner;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class Main {
@@ -13,7 +14,7 @@ public class Main {
 	private static ArrayList<Ticket> Ticket=new ArrayList<Ticket>();//Creating arraylist*/
 
 	static String assign;
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		 
 		Init();
 		while(true){
@@ -68,7 +69,7 @@ public class Main {
 									case 8:
 										//View Movie Schedule
 										System.out.println("View Movie Schedule");
-										//AdminUIViewMovieSchedule();
+										AdminUIViewMovieSchedule();
 										break;
 									case 9:
 										//View Top 5 Movies
@@ -211,12 +212,13 @@ public class Main {
 		Staff.add(new Staff("Employee", 1, false, "Wilfred", "wy@gmail.com", "password"));
 		Staff.add(new Staff("Special", 0, false, "admin", "admin", "admin"));
 		
-		
 		Movie.get(1).addReview("Test",10);
 		Movie.get(1).addReview("Test",4);
 		Movie.get(1).addReview("Test",6);
 		Movie.get(1).addReview("Test",8);
 		Movie.get(1).addReview("Test",5);
+
+		Customer.add(new Customer("Cust1", "cust1@gmail.com", "password", "elderly"));
 	}
 
 	public static int MainUI(){
@@ -435,16 +437,6 @@ public class Main {
 			System.out.println("Invalid Input");
 			input = sc.nextInt();
 		}
-		//Create new movie schedule object
-		//System.out.println("Movie Title : " + Movie.get(input-1).getMovieTitle());
-		//System.out.println("Movie Status : " + Movie.get(input-1).getShowingStatus());
-		//System.out.println("Movie Synopsis : " + Movie.get(input-1).getSynopsis());
-		//System.out.println("Movie Director : " + Movie.get(input-1).getDirector());
-		//System.out.print("Movie Cast : [");
-		//for(int i =0; i< Movie.get(input-1).getCast().length; i++) 
-		//	System.out.print(Movie.get(input-1).getCast()[i] + ",");
-		//System.out.println("]");
-
 		//Select Cineplex
 		int cineplex = CineplexDropDown();
 		//Select Cinema
@@ -504,6 +496,23 @@ public class Main {
 		System.out.println("////////////////////////////////////////////////////");
 	}
 
+	public static void AdminUIViewMovieSchedule() throws ParseException{
+		//view movie schedule
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("View Movie Schedule");
+		//Select movie only where status is "Now Showing" or "Coming Soon"
+		for (int i = 0; i < MovieSchedule.size(); i++) {
+			System.out.println(
+			i + 1 + ". " + MovieSchedule.get(i).getMovie()
+			+ " ,Date: " + MovieSchedule.get(i).getDate() 
+			+ " ,Time: " + MovieSchedule.get(i).getTime() 
+			+ " ,At: " + MovieSchedule.get(i).getCinemaID() 
+			+ " ,Room: " + MovieSchedule.get(i).getRoom().getRoomNum()
+			 );
+		}
+	}
+
 /////////////////////////////    MOVIE GOER UI STARTS HERE      /////////////////////////////
 
 	public static int MovieGoerUIStart(){
@@ -543,6 +552,11 @@ public class Main {
 			System.out.print(Movie.get(input-1).getCast()[i] + ",");
 		}
 		System.out.println("]");
+		//print reviews
+		System.out.println("Movie Reviews :");
+		for(int i =0; i< Movie.get(input-1).getReview().size(); i++) {
+			System.out.println("Review: " + Movie.get(input-1).getReview().get(i).getReviewText() + " \nRating: " + Movie.get(input-1).getReview().get(i).getRating());
+		}
 		System.out.println("");
 		System.out.println("////////////////////////////////////////////////////");
 	}
@@ -556,21 +570,17 @@ public class Main {
 		String email = sc.next();
 		System.out.println("Password :");
 		String password = sc.next();
-		/*for (int i = 0; i < Customer.size(); i++) {
-			if(Customer.get(i).getUsername().equals(username) && Customer.get(i).getPassword().equals(password)) {
+		for (int i = 0; i < Customer.size(); i++) {
+			if(Customer.get(i).getEmail().equals(email) && Customer.get(i).getPassword().equals(password)) {
 				System.out.println("Login Successful");
 				System.out.println("");
 				System.out.println("////////////////////////////////////////////////////");
 				return true;
 			}
-		}*/
-		if (email.equals("customer") && password.equals("customer")) {
-			return true;
 		}
-		else{
-			System.out.println("Invalid Email or Password");
-			return false;
-		}
+		System.out.println("Invalid Email or Password");
+		return false;
+		
 	}
 
 	public static int MovieGoerUIMain(){
