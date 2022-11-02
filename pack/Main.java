@@ -1,4 +1,3 @@
-//package MovieBooking;
 package pack;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -12,7 +11,7 @@ public class Main {
 	private static ArrayList<Cineplex> Cineplex=new ArrayList<Cineplex>();//Creating arraylist
 	private static ArrayList<Customer> Customer=new ArrayList<Customer>();//Creating arraylist
 	private static ArrayList<MovieSchedule> MovieSchedule=new ArrayList<MovieSchedule>();//Creating arraylist
-	private static ArrayList<Ticket> Ticket=new ArrayList<Ticket>();//Creating arraylist*/
+	private static ArrayList<Ticket> Ticket=new ArrayList<Ticket>();//Creating arraylist
 
 	static String assign;
 	public static void main(String[] args) throws ParseException {
@@ -257,7 +256,7 @@ public class Main {
 		//Create Movie Schedule Object String int string string
 		MovieSchedule.add(new MovieSchedule(Movie.get(0).getMovieTitle(), 0 ,"SW", "202212121900"));
 		MovieSchedule.add(new MovieSchedule(Movie.get(1).getMovieTitle(), 2 ,"SW", "202212121700"));
-		MovieSchedule.add(new MovieSchedule(Movie.get(2).getMovieTitle(), 3 ,"GV", "202212121500"));
+		MovieSchedule.add(new MovieSchedule(Movie.get(2).getMovieTitle(), 1 ,"GV", "202212121500"));
 		MovieSchedule.add(new MovieSchedule(Movie.get(3).getMovieTitle(), 2 ,"GV", "202212121300"));
 		MovieSchedule.add(new MovieSchedule(Movie.get(4).getMovieTitle(), 2 ,"GV", "202212121100"));
 	}
@@ -422,42 +421,6 @@ public class Main {
 		System.out.println("////////////////////////////////////////////////////");
 	}
 
-	/*public static void AdminUIViewMovie(){	//Reminder to add Try Catch for Index Out of Bounds
-		//View Movie
-		Scanner sc = new Scanner(System.in);
-		System.out.println("////////////////////////////////////////////////////");
-		System.out.println("View Movie");
-		System.out.println("Select Movie :");
-		for (int i = 0; i < Movie.size(); i++) {
-			System.out.println(i + 1 + ". " + Movie.get(i).getMovieTitle());
-		}
-		int input = sc.nextInt();
-		while(input < 1 && input > Movie.size()) {	//input 1 to 7 will break the while loop
-			if (input >= 1 && input <= Movie.size()) {
-				break;
-			}
-			System.out.println("Invalid Input");
-			input = sc.nextInt();
-		}
-		System.out.println("Movie Title : " + Movie.get(input-1).getMovieTitle());
-		System.out.println("Movie Status : " + Movie.get(input-1).getShowingStatus());
-		System.out.println("Movie Synopsis : " + Movie.get(input-1).getSynopsis());
-		System.out.println("Movie Director : " + Movie.get(input-1).getDirector());
-		System.out.print("Movie Cast : [");
-		for(int i =0; i< Movie.get(input-1).getCast().length; i++) {
-			System.out.print(Movie.get(input-1).getCast()[i] + ",");
-		}
-		System.out.println("]");
-		//print reviews
-		System.out.println("Movie Reviews :");
-		for(int i =0; i< Movie.get(input-1).getReview().size(); i++) {
-			System.out.println("Review: " + Movie.get(input-1).getReview().get(i).getReviewText() + " \nRating: " + Movie.get(input-1).getReview().get(i).getRating());
-		}
-
-		System.out.println("");
-		System.out.println("////////////////////////////////////////////////////");
-	}*/
-
 	public static void AdminUICreateMovieSchedule(){
 		//create movie schedule object  
 		Scanner sc = new Scanner(System.in);
@@ -537,23 +500,6 @@ public class Main {
 		System.out.println("////////////////////////////////////////////////////");
 	}
 
-	/*public static void AdminUIViewMovieSchedule() throws ParseException{
-		//view movie schedule
-		Scanner sc = new Scanner(System.in);
-		System.out.println("////////////////////////////////////////////////////");
-		System.out.println("View Movie Schedule");
-		//Select movie only where status is "Now Showing" or "Coming Soon"
-		for (int i = 0; i < MovieSchedule.size(); i++) {
-			System.out.println(
-			i + 1 + ". " + MovieSchedule.get(i).getMovie()
-			// + " ,Date: " + MovieSchedule.get(i).getDate() //??????????????
-			// + " ,Time: " + MovieSchedule.get(i).getTime() //??????
-			+ " ,At: " + MovieSchedule.get(i).getCinemaID() 
-			+ " ,Room: " + MovieSchedule.get(i).getRoom().getRoomNum()
-			 );
-		}
-	}*/
-
 /////////////////////////////    MOVIE GOER UI STARTS HERE      /////////////////////////////
 
 	public static int MovieGoerUIStart(){
@@ -577,30 +523,6 @@ public class Main {
 		}
 		return input;
 	}
-
-	/*public static void MovieGoerUIViewMovie(){
-		//View Movie
-		Scanner sc = new Scanner(System.in);
-		System.out.println("////////////////////////////////////////////////////");
-		System.out.println("View Movie");
-		int input = DropDownMovie();
-		System.out.println("Movie Title : " + Movie.get(input-1).getMovieTitle());
-		System.out.println("Movie Status : " + Movie.get(input-1).getShowingStatus());
-		System.out.println("Movie Synopsis : " + Movie.get(input-1).getSynopsis());
-		System.out.println("Movie Director : " + Movie.get(input-1).getDirector());
-		System.out.print("Movie Cast : [");
-		for(int i =0; i< Movie.get(input-1).getCast().length; i++) {
-			System.out.print(Movie.get(input-1).getCast()[i] + ",");
-		}
-		System.out.println("]");
-		//print reviews
-		System.out.println("Movie Reviews :");
-		for(int i =0; i< Movie.get(input-1).getReview().size(); i++) {
-			System.out.println("Review: " + Movie.get(input-1).getReview().get(i).getReviewText() + " \nRating: " + Movie.get(input-1).getReview().get(i).getRating());
-		}
-		System.out.println("");
-		System.out.println("////////////////////////////////////////////////////");
-	}*/
 
 	public static boolean MovieGoerUILogin(){
 		//Login
@@ -666,18 +588,6 @@ public class Main {
 		}
 		return input;
 	}
-	
-	/*public static int MovieGoerUIViewMovieSchedule(){
-		//View All Movie Schedule
-		for (int i=0; i < MovieSchedule.size(); i++) {
-			System.out.println("Movie Title : " + MovieSchedule.get(i).getMovie());
-			System.out.println("Cinema : " + MovieSchedule.get(i).getCinemaID());
-			System.out.println("Date : " + MovieSchedule.get(i).getShowTime());
-			System.out.println("");
-		}
-		return 0;
-	}*/
-	
 
 	/////////////////////////////////     General UIs        //////////////////////////////////////
 	
@@ -731,18 +641,13 @@ public class Main {
 		System.out.println("////////////////////////////////////////////////////");
 		System.out.println("Select Movie Timing:");
 		MovieSchedule MS = DropDownMovieSchedule();
-		//System.out.println("Select Seat:");
-		//Seat require int cineplex, int cinema, int room
 		int input = DropDownSeat(MS);
-		// System.out.println("Select Ticket Type:");
-		// int input3 = DropDownTicketType();
-		// System.out.println("Select Payment Method:");
-		// int input4 = DropDownPaymentMethod();
 		System.out.println("Confirm Booking? (Y/N)");
 		String input5 = sc.nextLine();
 		if(input5.toUpperCase().equals("Y")) {
-			//add booking to booking history
-			//bookingHistory.add(new bookingHistory(MovieSchedule.get(input-1).getMovie(), MovieSchedule.get(input-1).getDate(), MovieSchedule.get(input-1).getTime(), MovieSchedule.get(input-1).getCinemaID(), MovieSchedule.get(input-1).getRoom().getRoomNum(), MovieSchedule.get(input-1).getRoom().getSeat().length.getSeatNum(), TicketType.get(input3-1).getTicketType(), TicketType.get(input3-1).getTicketPrice(), PaymentMethod.get(input4-1).getPaymentMethod()));
+			//generate a ticket
+			Ticket.add(new Ticket(MS));
+			
 			//change seat status to booked
 			//MovieSchedule.get(input-1).getRoom().getSeat().get(input2-1).setSeatStatus("Booked");
 			System.out.println("Booking Confirmed");
@@ -901,15 +806,10 @@ public class Main {
 			values1[i]=Movie.get(i).getMovieTitle();
 			values2[i]=Movie.get(i).getRating();
 		}
+		int min;
+		double temp;
 
-		insertionSort(values2,values1);
-		
-		for(int i=0;i<5;i++) {
-			System.out.println(values1[i]);
-			System.out.println(values2[i]);
-			
-		}
-		return 1;
+		return 0;
 	}
 	public static void insertionSort(double[] arr,String[] arr1) {
 		for(int i=1;i<arr.length;i++) {
@@ -925,6 +825,8 @@ public class Main {
 			arr1[j]=movieName;
 		}	
 	}
+
+
 }
 		//so
 		
