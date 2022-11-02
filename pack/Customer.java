@@ -7,7 +7,7 @@ public class Customer extends User {
 
 	private String UserID;
 	private String typeOfCustomer;
-	private ArrayList<Ticket> Ticket=new ArrayList<Ticket>();//Creating arraylist
+	//private ArrayList<Ticket> Ticket=new ArrayList<Ticket>();//Creating arraylist
 	// private MovieSchedule Movie = getMovie();
 	// private Movie MovieTitle = getMovieTitle();
 	private ArrayList<bookingHistory> bookingHistory=new ArrayList<bookingHistory>();//Creating arraylist
@@ -53,14 +53,17 @@ public class Customer extends User {
 	public void setType(String typeOfCustomer) {
 		this.typeOfCustomer = typeOfCustomer;
 	}
-
-	public void addTicket(Ticket ticket) {
-		Ticket.add(ticket);
+/* 
+	//use to create a duplicate ticket for customer object to store in bookingHistory
+	public void addBookingHistory(Ticket t) {
+		this.bookingHistory.add(new bookingHistory(...));
 	}
 
-	public void removeTicket(Ticket ticket) {
-		Ticket.remove(ticket);
-	}
+	public void viewBookingHistory() {
+		for (int i=0; i<bookingHistory.size(); i++) {
+			System.out.println(bookingHistory.get(i));
+		}
+	}*/
 
 	// public void bookingHistory() {
 	// 	System.out.println("You have previuosly watched: " );
