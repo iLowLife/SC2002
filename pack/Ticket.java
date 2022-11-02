@@ -1,8 +1,6 @@
 package pack;
 import pack.MovieSchedule;
-
 import java.util.ArrayList;
-
 import pack.Movie;
 public class Ticket {
 
@@ -16,10 +14,6 @@ public class Ticket {
 
 	public Ticket(int ticketID, String weeklyDayPricing, String concessionPrice,
 			MovieSchedule movieSchedule, Customer customer) {
-			//this.customer.setCustomerID(customer.getCustomerID());
-			//this.customer.setCustomerName(customer.getCustomerName());
-			//this.customer.setCustomerEmail(customer.getCustomerEmail());
-			//this.customer.setCustomerPhone(customer.getCustomerPhone());
 			this.TicketID = ticketID;
 			this.WeeklyDayPricing = weeklyDayPricing;
 			this.ConcessionPrice = concessionPrice;
