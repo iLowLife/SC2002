@@ -667,75 +667,28 @@ public class Main {
 		System.out.println("////////////////////////////////////////////////////");
 		System.out.println("View Movie Schedule");
 
-		System.out.println("////////////////////////////////////////////////////");
-		System.out.println("Choose a cinema");
-		System.out.println("1. Golden Village");
-		System.out.println("2. Shaws");
-		System.out.println("3. Cathay");
-		System.out.println("4. Exit");
-		System.out.println("");
-		int input= sc.nextInt();
-
-		switch(input){
-			case 1:
-			System.out.println("Golden Village");
-			String loc="Golden Village";
-			for (int i = 0; i < MovieSchedule.size(); i++) {
-				if(loc.equals(MovieSchedule.get(i).getLocation())){
-					System.out.println(
-				i + 1 + ". " + MovieSchedule.get(i).getMovie()
-				+ ", Date: " + MovieSchedule.get(i).getDate() 
-				+ ", Time: " + MovieSchedule.get(i).getTime() 
-				+ ", At: " + MovieSchedule.get(i).getLocation() 
-				+ ", Room: " + (MovieSchedule.get(i).getRoom().getRoomNum()+1)
-				);
-				}
-			}
-				break;
-			case 2:
-			System.out.println("Shaws");
-			String loc1="Shaws";
-			for (int i = 0; i < MovieSchedule.size(); i++) {
-				if(MovieSchedule.get(i).getLocation()==loc1){
-					System.out.println(
-				i + 1 + ". " + MovieSchedule.get(i).getMovie()
-				+ ", Date: " + MovieSchedule.get(i).getDate() 
-				+ ", Time: " + MovieSchedule.get(i).getTime() 
-				+ ", At: " + MovieSchedule.get(i).getLocation() 
-				+ ", Room: " + (MovieSchedule.get(i).getRoom().getRoomNum()+1)
-				);
-				}
-			}
-				break;
-			case 3:
-			System.out.println("Cathay");
-			String loc2="Cathay";
-			for (int i = 0; i < MovieSchedule.size(); i++) {
-				if(MovieSchedule.get(i).getLocation()==loc2){
-					System.out.println(
-				i + 1 + ". " + MovieSchedule.get(i).getMovie()
-				+ ", Date: " + MovieSchedule.get(i).getDate() 
-				+ ", Time: " + MovieSchedule.get(i).getTime() 
-				+ ", At: " + MovieSchedule.get(i).getLocation() 
-				+ ", Room: " + (MovieSchedule.get(i).getRoom().getRoomNum()+1)
-				);
-				}
-			}
-				break;
-			default:
-				break;
-		}
 		//Select movie only where status is "Now Showing" or "Coming Soon"
-		/*for (int i = 0; i < MovieSchedule.size(); i++) {
-			System.out.println(
-			i + 1 + ". " + MovieSchedule.get(i).getMovie()
-			+ ", Date: " + MovieSchedule.get(i).getDate() 
-			+ ", Time: " + MovieSchedule.get(i).getTime() 
-			+ ", At: " + MovieSchedule.get(i).getLocation() 
-			+ ", Room: " + (MovieSchedule.get(i).getRoom().getRoomNum()+1)
-			 );
-		}*/
-		return 0;
+		for (int i = 0; i < Cineplex.size(); i++) {
+			System.out.println((i+1) + " ." + Cineplex.get(i).getName());
+		}
+		System.out.println( (Cineplex.size()+1) + ". Exit");
+		int input= sc.nextInt() - 1 ;
+
+		for (int i = 0; i < MovieSchedule.size(); i++) {
+			if(Cineplex.get(input).getCineplexCode().equals(MovieSchedule.get(i).getCinemaID())){
+				System.out.println(
+				i + 1 + ". " + MovieSchedule.get(i).getMovie()
+				+ ", Date: " + MovieSchedule.get(i).getDate() 
+				+ ", Time: " + MovieSchedule.get(i).getTime() 
+				+ ", At: " + MovieSchedule.get(i).getLocation() 
+				+ ", Room: " + (MovieSchedule.get(i).getRoom().getRoomNum()+1)
+				);
+			}
+		}
+
+		int ms = sc.nextInt() - 1 ;
+
+		return ms;
 	}
 
 	public static void UIViewMovie(){	//Reminder to add Try Catch for Index Out of Bounds
