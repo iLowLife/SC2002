@@ -148,14 +148,11 @@ public class Main {
 										//MovieGoerUIViewBookingHistory();
 										break;
 									case 5:
-										//View Top 5 Movies by Ticket Sales
-										System.out.println("View Top 5 Movies by Ticket Sales");
-										break;
-									case 6:
 										//View Top 5 Movies by Rating
 										System.out.println("View Top 5 Movies by Rating");
+										GetMovieRatings();
 										break;
-									case 7:
+									case 6:
 										//Logout
 										System.out.println("Logging out...");
 									break;
@@ -281,7 +278,7 @@ public class Main {
 	public static int MainUI(){
 		System.out.println("////////////////////////////////////////////////////");
 		System.out.println("Centralized Movie Booking App");
-		System.out.println("Please select a cineplex:");
+		System.out.println("Please select a module:");
 		System.out.println("1. Admin Module");
 		System.out.println("2. Movie-goer Module");
 		System.out.println("3. Exit System");
@@ -354,14 +351,13 @@ public class Main {
 		System.out.println("7. View Movies");
 		System.out.println("8. View Movie Schedule");
 		System.out.println("9. Add Holiday Date");
-		System.out.println("10. Top 5 Movies by Ticket Sold");
-		System.out.println("11. Top 5 Movies by Ratings");
-		System.out.println("12. Logout");
+		System.out.println("10. Top 5 Movies by Ratings");
+		System.out.println("11. Logout");
 		System.out.println("");
 		System.out.println("////////////////////////////////////////////////////");
 		int input = sc.nextInt();
-		while(input < 1 && input > 12) {	//input 1 to 7 will break the while loop
-			if (input >= 1 && input <= 12) {
+		while(input < 1 && input > 11) {	//input 1 to 7 will break the while loop
+			if (input >= 1 && input <= 11) {
 				break;
 			}
 			System.out.println("Invalid Input");
@@ -608,13 +604,12 @@ public class Main {
 		System.out.println("2. View Movie Details");
 		System.out.println("3. Book Ticket");
 		System.out.println("4. View Booking History");
-		System.out.println("5. Top 5 Movies by Ticket Sold");
-		System.out.println("6. Top 5 Movies by Ratings");
-		System.out.println("7. Logout");
+		System.out.println("5. Top 5 Movies by Ratings");
+		System.out.println("6. Logout");
 		System.out.println("////////////////////////////////////////////////////");
 		int input = sc.nextInt();
-		while(input < 1 && input > 7) {	//input 1 to 5 will break the while loop
-			if (input >= 1 && input <= 7) {
+		while(input < 1 && input > 6) {	//input 1 to 5 will break the while loop
+			if (input >= 1 && input <= 6) {
 				break;
 			}
 			System.out.println("Invalid Input");
@@ -687,8 +682,11 @@ public class Main {
 		}
 
 		int ms = sc.nextInt() - 1 ;
-
-		return ms;
+		// display seats remaining
+		int a = DropDownSeat(MovieSchedule.get(ms));
+		//System.out.println("Seats Remaining: " + MovieSchedule.get(ms).getRoom().getSeatsRemaining());
+		System.out.println("////////////////////////////////////////////////////");
+		return a;
 	}
 
 	public static void UIViewMovie(){	//Reminder to add Try Catch for Index Out of Bounds
@@ -859,8 +857,8 @@ public class Main {
 		double [] values2 = new double [Movie.size()];
 
 		for(int i=0;i<Movie.size();i++) {
-			System.out.println(Movie.get(i).getMovieTitle());
-			System.out.println(Movie.get(i).getRating());
+			//System.out.println(Movie.get(i).getMovieTitle());
+			//System.out.println(Movie.get(i).getRating());
 			values1[i]=Movie.get(i).getMovieTitle();
 			values2[i]=Movie.get(i).getRating();
 		}
