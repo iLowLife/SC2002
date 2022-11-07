@@ -16,3 +16,8 @@ Movie 6|Now Showing|Something Short|1|1,2,3,4,5|
 Movie 7|Now Showing|Something Short|1|1,2,3,4,5|
 Movie 8|End of Showing|Something Short|1|1,2,3,4,5|
 Movie 9|End of Showing|Something Short|1|1,2,3,4,5|
+morbius|Coming Soon |In|a|world,where,its,morbin,time|
+1|Coming Soon ||2|1,2,3,4,5|
+1|Coming Soon||1123|asdsad,asdsad,asdasd,asda,sd|
+asd|End of Showing|asd|asd|1,asd,asd,long long,asd|
+1|Coming Soon|morbin|urmom|123,123123 12313,123,123123,sfdsdf sdfsdf|

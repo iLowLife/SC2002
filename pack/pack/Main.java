@@ -69,7 +69,7 @@ public class Main {
 										//Delete Movie Schedule
 										//System.out.println("Delete Movie Schedule");
 										System.out.println("Delete Movie Schedule");
-										//AdminUIViewMovie();
+										AdminUIRemoveMovieSchedule();
 										break;
 									case 7:
 										//View Movie
@@ -208,7 +208,7 @@ public class Main {
 			  Cineplex c = new Cineplex(tokens[0], tokens[1]);
 			  Cineplex.add(c);
 			  //add location to cineplex
-			  String[] cinema = line.split(";");
+			  String[] cinema = tokens[2].split(";");
 			  for(int i = 0; i < cinema.length; i++){
 				  String[] location = cinema[i].split(",");
 				  Cineplex.get(Cineplex.size()-1).getCinema().get(i).setLocation(location[0]);
@@ -399,23 +399,39 @@ public class Main {
 		System.out.println("////////////////////////////////////////////////////");
 		System.out.println("Add Movie");
 		System.out.print("Movie Title :");
-		String title = sc.next();
-		System.out.print("Movie Status :");
-		String status = sc.next();
+		String title = sc.nextLine();
+		System.out.println("Movie Status :");
+		System.out.println("1. Preview");
+		System.out.println("2. Coming Soon");
+		System.out.println("3. Now Showing");
+		System.out.println("4. End of Showing");
+		String status = "";
+		int choice = sc.nextInt();
+		if (choice == 1)
+			status = "Preview";
+		else if (choice == 2)
+			status = "Coming Soon";
+		else if (choice == 3)
+			status = "Now Showing";
+		else if (choice == 4)
+			status = "End of Showing";
+		else 
+			status = "";
 		System.out.print("Movie Synopsis :");
 		String synopsis = sc.next();
+		String dummy = sc.nextLine();
 		System.out.print("Movie Director :");
-		String director = sc.next();
+		String director = sc.nextLine();
 		String[] cast = new String[5];
 		System.out.print("Movie Cast (At Least 5):");
 		for (int i=0 ; i<5 ; i++){
-			cast[i] = sc.next();
+			cast[i] = sc.nextLine();
 		}
 		
 		Movie.add(new Movie(title, status, synopsis, director, cast ));
 		System.out.println("Movie Added");
-		exportMovie();
 		System.out.println("////////////////////////////////////////////////////");
+		exportMovie();
 	}
 
 	public static void AdminUIUpdateMovie(){ //Can improve to change 1 by 1 instead of all
@@ -441,7 +457,22 @@ public class Main {
 				break;
 			case 2:
 				System.out.println("Movie Status :");
-				String status = sc.next();
+				System.out.println("1. Preview");
+				System.out.println("2. Coming Soon");
+				System.out.println("3. Now Showing");
+				System.out.println("4. End of Showing");
+				String status = "";
+				int c = sc.nextInt();
+				if (c == 1)
+					status = "Preview";
+				else if (c == 2)
+					status = "Coming Soon";
+				else if (c == 3)
+					status = "Now Showing";
+				else if (c == 4)
+					status = "End of Showing";
+				else 
+					status = "";
 				Movie.get(input).setShowingStatus(status);
 				break;
 			case 3:
@@ -560,6 +591,18 @@ public class Main {
 		exportMovieSchedule();
 	}
 
+	public static void AdminUIRemoveMovieSchedule(){
+		//remove movie schedule
+		Scanner sc = new Scanner(System.in);
+		System.out.println("////////////////////////////////////////////////////");
+		System.out.println("Remove Movie Schedule");
+		System.out.println("Select Movie Schedule :");
+		MovieSchedule ms = DropDownMovieSchedule();
+		MovieSchedule.remove(ms);
+		System.out.println("Movie Schedule Removed");
+		System.out.println("////////////////////////////////////////////////////");
+		exportMovieSchedule();
+	}
 	public static void AdminUIAddNewEmployee(){
 		//add new staff
 		Scanner sc = new Scanner(System.in);
@@ -569,13 +612,13 @@ public class Main {
 		String name = sc.next();
 		System.out.print("Staff Title :");
 		String title = sc.next();
-		System.out.print("Staff Shift :");
-		boolean shift = sc.nextBoolean();
+		//System.out.print("Staff Shift :");
+		//boolean shift = sc.nextBoolean();
 		System.out.print("Staff Email :");
 		String email = sc.next();
 		System.out.print("Staff Password :");
 		String password = sc.next();
-		Staff.add(new Staff(title, shift, name, email, password));
+		Staff.add(new Staff(title, false, name, email, password));
 		System.out.println("Staff Added");
 		System.out.println("////////////////////////////////////////////////////");
 		exportStaff();
@@ -708,12 +751,35 @@ public class Main {
 		return input;
 	}
 
-	public static void MovieGoerUIBookTicket(){
+	public static void MovieGoerUIBookTicket() throws ParseException{
 		//Book Ticket 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("////////////////////////////////////////////////////");
 		System.out.println("Select Movie From Schedule:");
-		MovieSchedule MS = DropDownMovieSchedule();
+		//MovieSchedule MS = DropDownMovieSchedule();
+
+		//Select movie only where status is "Now Showing" or "Coming Soon"
+		for (int i = 0; i < Cineplex.size(); i++) {
+			System.out.println((i+1) + ". " + Cineplex.get(i).getName());
+		}
+		System.out.println( (Cineplex.size()+1) + ". Exit");
+		int d= sc.nextInt() - 1 ;
+
+		for (int i = 0; i < MovieSchedule.size(); i++) {
+			MovieSchedule ms = MovieSchedule.get(i);
+			if(d == ms.getCineplexID()){
+				System.out.println(
+				i + 1 + ". " + ms.getMovie()
+				+ ", Date: " + ms.getDate() 
+				+ ", Time: " + ms.getTime() 
+				+ ", At: " + ms.getCineplex() + " " + Cineplex.get(ms.getCineplexID()).getCinema().get(ms.getLocation()).getLocation()
+				+ ", Room: " + (ms.getRoom().getRoomNum()+1)
+				);
+			}
+		}
+
+		int ms = sc.nextInt() - 1 ;
+		MovieSchedule MS = MovieSchedule.get(ms);
 		int input = DropDownSeat(MS);
 		//are you a concession holder?
 		System.out.println("Are you a concession holder? \n1. Yes \n2. No"); //Student / Elderly
@@ -722,7 +788,7 @@ public class Main {
 		//get Customer Object
 
 		//generate ticket 
-		Ticket.add(new Ticket(MS, currentCustomer));
+		Ticket.add(new Ticket(MS, currentCustomer,input));
 		//calculate price
 		double price = Ticket.get(Ticket.size()-1).calPrice(MS, concession, HolidayDate);
 
@@ -980,8 +1046,8 @@ public class Main {
 			}
 		}
 		int input = sc.nextInt();
-		while(input < 1 && input > ms.getRoom().getSeat().length) {
-			if (input >= 1 && input <= ms.getRoom().getSeat().length) {
+		while(input < 1 && input > ms.getRoom().getSeat().length && !ms.getRoom().getSeat()[input-1].getAssigned()) {
+			if (input >= 1 && input <= ms.getRoom().getSeat().length && !ms.getRoom().getSeat()[input-1].getAssigned()) {
 				break;
 			}
 			System.out.println("Invalid Input");
@@ -1120,6 +1186,29 @@ public class Main {
 				Staff s = Staff.get(i);
 				// public Staff(String Title, boolean Shift, String Name, String Email, String Password) {
 				pwStream.print(s.getTitle() + "," + s.getShift() + "," + s.getName() + "," + s.getEmail() + "," + s.getPassword()) ;	
+				pwStream.println("");
+
+			}
+			pwStream.close();
+		}
+		catch ( IOException e ) {
+			System.out.println( "IO Error!" + e.getMessage() );
+			e.printStackTrace();
+			System.exit( 0 );
+		}
+	}
+
+	public static void exportTicket(){
+		//export ticket
+		try{
+			FileWriter fwStream = new FileWriter ( "Ticket.txt ");
+			BufferedWriter bwStream = new BufferedWriter ( fwStream );
+			PrintWriter pwStream = new PrintWriter ( bwStream );
+			//Loop ticket
+			for (int i = 0; i < Ticket.size(); i++){
+				Ticket t = Ticket.get(i);
+				//Ticket(int TicketID, String Price, boolean Concession, boolean Used, String MovieTitle, String MovieShowTime, String MovieLocation, String CName, String CEmail)
+				pwStream.print(t.getTicketID() + "," + t.getPrice() + "," + t.isConcession() + "," + t.isUsed() + "," + t.getMovieTitle() + "," + t.getMovieShowTime() + "," + t.getMovieLocation() + "," + t.getCName() + "," + t.getCEmail()) ;	
 				pwStream.println("");
 
 			}

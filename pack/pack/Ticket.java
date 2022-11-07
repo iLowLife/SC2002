@@ -8,27 +8,43 @@ import java.util.Date;
 public class Ticket{
 
 	private int TicketID;
-	private String Price;
+	private double Price;
 	private boolean Concession;
 	private boolean Used;
 	private String MovieTitle;
 	private String MovieShowTime;
 	private String MovieLocation;
+	private int SeatID;
 	private String CName;
 	private String CEmail;
 	//private double basePrice = 10;
 	private int TicketCount=0;
 
-	public Ticket(MovieSchedule MS, Customer customer) {
+	public Ticket(MovieSchedule MS, Customer customer, int SeatID) {
 			this.TicketID = ++TicketCount; //auto increment ticket id
 			
 			this.MovieTitle = MS.getMovie();
 			this.MovieShowTime = MS.getShowTime();
 			this.MovieLocation = MS.getCinemaID();
+			this.SeatID = SeatID;
 
 			this.Used = false;
 			this.CName = customer.getName();
 			this.CEmail = customer.getEmail();
+	}
+
+	public Ticket(int TicketID, double Price, boolean Concession, boolean Used, String MovieTitle, String MovieShowTime, String MovieLocation, String CName, String CEmail) {
+		this.TicketID = TicketID;
+		this.Price = Price;
+		this.Concession = Concession;
+
+		this.MovieTitle = MovieTitle;
+		this.MovieShowTime = MovieShowTime;
+		this.MovieLocation = MovieLocation;
+
+		this.Used = Used;
+		this.CName = CName;
+		this.CEmail = CEmail;
 	}
 
 	public int getTicketID() {
@@ -41,6 +57,10 @@ public class Ticket{
 
 	public boolean isUsed() {
 		return Used;
+	}
+
+	public boolean isConcession() {
+		return Concession;
 	}
 
 	public void setUsed(boolean used) {
@@ -67,18 +87,18 @@ public class Ticket{
 		return this.MovieLocation;
 	}
 
-	public String getPrice() {
+	public double getPrice() {
 		return Price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		Price = price;
 	}
 
 	public double calPrice(MovieSchedule MS, int C, ArrayList<Holiday> H) {
 		double price = 10; //base Price
 		String dateTime = MS.getDate2();
-		System.out.println(dateTime + " " + H.get(0).getDate2());
+		//System.out.println(dateTime + " " + H.get(0).getDate2());
 		//Concession stuff
 		if (C == 1)
 			price = price - 2; //Minus 2 dollar if concession
