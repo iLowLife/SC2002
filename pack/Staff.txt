@@ -4,3 +4,5 @@ Special,false,admin,admin,admin
 2,false,2,2,2
 1,false,1,1,1
 1,false,1,1,1
+manager,false,wei yang,wy@hotmail.com,password
+manager,false,john,john@gmail.com,password

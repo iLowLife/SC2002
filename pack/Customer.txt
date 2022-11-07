@@ -1,3 +1,7 @@
 Cust1,1,1,elderly
 Cust2,2,2,adult
 wei yang,wei,yang,children
+wei yang,weicogoat,wdym,Adult
+wilfre D yeo,wilpleb,yourmom,Adult
+wilfred,wil@gmail.com,password,Adult
+james,james@gmail.com,pass,Adult

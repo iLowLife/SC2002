@@ -230,6 +230,7 @@ public class Main {
 			while ( ( line = brStream.readLine() ) != null ) {
 				String[] movie = line.split("\\|");
 				String[] cast = movie[4].split(",");
+				//System.out.println(movie[0] + movie[1] + movie[2] + movie[3] + movie[4]);
 				Movie.add(new Movie(movie[0], movie[1], movie[2], movie[3], cast));
 				//if no review
 				try{
@@ -248,6 +249,22 @@ public class Main {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//import Holiday.txt
+		try {
+			FileReader     frStream = new FileReader("Holiday.txt" );
+			BufferedReader brStream = new BufferedReader( frStream  );
+			String         line     = null;
+
+			while ( ( line = brStream.readLine() ) != null ) {
+				String[] holiday = line.split(",");
+				HolidayDate.add(new Holiday(holiday[0]));
+			}
+			frStream.close();
+			brStream.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 
 		//import MovieSchedule.txt
 		try {
@@ -258,7 +275,7 @@ public class Main {
 			while ( ( line = brStream.readLine() ) != null ) {
 				String[] movieSchedule = line.split("\\|");
 				MovieSchedule.add(new MovieSchedule(movieSchedule[0], Integer.parseInt(movieSchedule[1]), movieSchedule[2], movieSchedule[3]));
-				System.out.println(movieSchedule[0]);
+				//System.out.println(movieSchedule[0]);
 				//update seats
 				String[] seats = movieSchedule[4].split(",");
 				for(int i = 0; i < seats.length; i++){
@@ -453,6 +470,8 @@ public class Main {
 			case 1:
 				System.out.println("Movie Title :");
 				String title = sc.next();
+				//String dum = sc.nextLine();
+				//title = sc.nextLine();
 				Movie.get(input).setMovieTitle(title);
 				break;
 			case 2:
@@ -609,7 +628,8 @@ public class Main {
 		System.out.println("////////////////////////////////////////////////////");
 		System.out.println("Add New Staff");
 		System.out.print("Staff Name :");
-		String name = sc.next();
+		String name = sc.nextLine();
+		//String dum = sc.next();
 		System.out.print("Staff Title :");
 		String title = sc.next();
 		//System.out.print("Staff Shift :");
@@ -718,10 +738,10 @@ public class Main {
         String email = sc.nextLine();
         System.out.println("Password :");
         String password = sc.nextLine();
-        System.out.println("Any valid concession? :");
-        String typeofCustomer = sc.next();
+        //System.out.println("Any valid concession? :");
+        //String typeofCustomer = sc.next();
         //add new customer
-        Customer.add(new Customer(name, email, password, typeofCustomer));
+        Customer.add(new Customer(name, email, password, "Adult"));
         System.out.println("Account Created");
         System.out.println("////////////////////////////////////////////////////");
 		exportCustomer();
@@ -741,6 +761,7 @@ public class Main {
 		System.out.println("7. Logout");
 		System.out.println("////////////////////////////////////////////////////");
 		int input = sc.nextInt();
+
 		while(input < 1 && input > 7) {	//input 1 to 7 will break the while loop
 			if (input >= 1 && input <= 7) {
 				break;
@@ -842,7 +863,7 @@ public class Main {
 		System.out.println("////////////////////////////////////////////////////");
 		//Select Movie
 		System.out.println("Select Movie:");
-		int M = DropDownMovie();
+		int M = DropDownMovie()-1;
 		System.out.println("Review :");
 		String review = sc.nextLine();
 		System.out.println("Rating :");
@@ -909,7 +930,8 @@ public class Main {
 		//print reviews
 		System.out.println("Movie Reviews :");
 		for(int i =0; i< Movie.get(input-1).getReview().size(); i++) {
-			System.out.println("Review: " + Movie.get(input-1).getReview().get(i).getReviewText() + " Rating: " + Movie.get(input-1).getReview().get(i).getRating());
+			System.out.print("Review: " + Movie.get(input-1).getReview().get(i).getReviewText() + " Rating: " + Movie.get(input-1).getReview().get(i).getRating());
+		
 		}
 
 		System.out.println("");

@@ -6,18 +6,4 @@ Frozen|Now Showing|Frozen is a 2013 American computer-animated musical fantasy f
 The Lion King|End of Showing|The Lion King is a 1994 American animated epic musical film produced by Walt Disney Feature Animation and released by Walt Disney Pictures. It is the 32nd Disney animated feature film, and the fifth animated film produced during a period known as the Disney Renaissance.|Roger Allers, Rob Minkoff|Matthew Broderick,Jeremy Irons,James Earl Jones,Whoopi Goldberg,Cheech Marin|
 The Incredibles|End of Showing|The Incredibles is a 2004 American computer-animated superhero film produced by Pixar Animation Studios and released by Walt Disney Pictures. It is the fifth film produced by Pixar.|Brad Bird|Craig T. Nelson,Holly Hunter,Samuel L. Jackson,Jason Lee,Wallace Shawn|
 Toy Story 4|Coming Soon|Woody has always been confident about his place in the world and that his priority is taking care of his kid, whether that's Andy or Bonnie. But when Bonnie adds a reluctant new toy called 'Forky' to her room, a road trip adventure alongside old and new friends will show Woody how big the world can be for a toy.|Josh Cooley|Tom Hanks,Tim Allen,Annie Potts,Tony Hale,Keegan-Michael Key|
-Aladdin|Coming Soon|A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecracking genie while a power-hungry Grand Vizier vies for the same lamp that has the power to make their deepest wishes come true.|Guy Ritchie|Will Smith,Mena Massoud,Naomi Scott,Marwan Kenzari,Navid Negahban|
-Movie 1|Preview|Something Short|1|1,2,3,4,5|
-Movie 2|Preview|Something Short|1|1,2,3,4,5|
-Movie 3|Coming Soon|Something Short|1|1,2,3,4,5|
-Movie 4|Coming Soon|Something Short|1|1,2,3,4,5|
-Movie 5|Now Showing|Something Short|1|1,2,3,4,5|
-Movie 6|Now Showing|Something Short|1|1,2,3,4,5|
-Movie 7|Now Showing|Something Short|1|1,2,3,4,5|
-Movie 8|End of Showing|Something Short|1|1,2,3,4,5|
-Movie 9|End of Showing|Something Short|1|1,2,3,4,5|
-morbius|Coming Soon |In|a|world,where,its,morbin,time|
-1|Coming Soon ||2|1,2,3,4,5|
-1|Coming Soon||1123|asdsad,asdsad,asdasd,asda,sd|
-asd|End of Showing|asd|asd|1,asd,asd,long long,asd|
-1|Coming Soon|morbin|urmom|123,123123 12313,123,123123,sfdsdf sdfsdf|
+Aladdin|Preview|A kindhearted street urchin named Aladdin embarks on a magical adventure after finding a lamp that releases a wisecracking genie while a power-hungry Grand Vizier vies for the same lamp that has the power to make their deepest wishes come true.|Guy Ritchie|Will Smith,Mena Massoud,Naomi Scott,Marwan Kenzari,Navid Negahban|
