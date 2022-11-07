@@ -1,0 +1,3 @@
+Golden Village,GV,GV @ Bedok;GV @ Jurong;GV @ Yishun
+Shaws,SW,Shaws @ Seletar;Shaws @ NEX;Shaws @ Paya Lebar
+Cathay,CT,Cathay @ West Mall;Cathay @ The Cathay;Cathay @ Funan
