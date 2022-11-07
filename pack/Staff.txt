@@ -1,3 +1,0 @@
-Manager,false,Chee Yong,cy@gmail.com,password
-Employee,false,Wilfred,wy@gmail.com,password
-Special,false,admin,admin,admin

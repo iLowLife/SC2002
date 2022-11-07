@@ -1,2 +1,0 @@
-John,email,password
-Cena,email,password
