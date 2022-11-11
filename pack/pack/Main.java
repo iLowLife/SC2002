@@ -916,7 +916,8 @@ public class Main {
 		System.out.println("View Movie");
 		System.out.println("Select Movie :");
 		int input = DropDownMovie();
-		System.out.println("Movie Title : " + Movie.get(input-1).getMovieTitle());
+		Movie.get(input).printMovie();
+		/*System.out.println("Movie Title : " + Movie.get(input-1).getMovieTitle());
 		System.out.println("Movie Status : " + Movie.get(input-1).getShowingStatus());
 		System.out.println("Movie Synopsis : " + Movie.get(input-1).getSynopsis());
 		System.out.println("Movie Director : " + Movie.get(input-1).getDirector());
@@ -931,8 +932,7 @@ public class Main {
 		System.out.println("Movie Reviews :");
 		for(int i =0; i< Movie.get(input-1).getReview().size(); i++) {
 			System.out.print("Review: " + Movie.get(input-1).getReview().get(i).getReviewText() + " Rating: " + Movie.get(input-1).getReview().get(i).getRating());
-		
-		}
+		}*/
 
 		System.out.println("");
 		System.out.println("////////////////////////////////////////////////////");

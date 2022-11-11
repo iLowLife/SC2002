@@ -137,4 +137,25 @@ public class Movie {
 	//System.out.println(avg);
 	this.Ratings=avg;
     }
+
+	public void printMovie(){
+		//print movie
+		System.out.println("Movie Title : " + this.MovieTitle);
+		System.out.println("Movie Status : " + this.ShowingStatus);
+		System.out.println("Movie Synopsis : " + this.Synopsis);
+		System.out.println("Movie Director : " + this.Director);
+		System.out.print("Movie Cast : [");
+		for(int i =0; i< 5; i++) {
+			System.out.print(this.Cast[i] + ",");
+		}
+		System.out.println("]");
+		//print movie rating
+		System.out.println("Movie Rating : " + this.Ratings);
+		//print reviews
+		System.out.println("Movie Reviews :");
+		for(int i =0; i< this.Review.size(); i++) {
+			System.out.println("Review: " + this.getReview().get(i).getReviewText() + ", Rating: " + this.getReview().get(i).getRating());
+		}
+		
+	}
 }
