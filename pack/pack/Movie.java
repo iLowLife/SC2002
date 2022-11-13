@@ -1,6 +1,10 @@
 package pack;
 import java.util.*;
-
+/*
+ * @author SE1 Group 4
+ * @version 13/11/2022
+ * 
+ */
 public class Movie {
 
 	private String MovieTitle;
@@ -15,6 +19,13 @@ public class Movie {
 	private double Ratings;
 	private String MovieType;
 	
+	/** 
+	 * @param MovieTitle 
+	 * @param ShowingStatus
+	 * @param Synopsis
+	 * @param Director
+	 * @param Cast
+	 */
 	public Movie(String MovieTitle, String ShowingStatus, String Synopsis, String Director, String[] Cast) {
 		this.MovieTitle = MovieTitle;
 		//this.Record = Record;
@@ -27,6 +38,10 @@ public class Movie {
 
 	}
 
+	
+	/** 
+	 * @return double
+	 */
 	public double getRating() {
 		// TODO - implement Movie.getRating
 		//throw new UnsupportedOperationException();
@@ -43,56 +58,104 @@ public class Movie {
 		throw new UnsupportedOperationException();
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getMovieTitle() {
 		// TODO - implement Movie.getMovieTitle
 		return this.MovieTitle;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getShowingStatus() {
 		// TODO - implement Movie.getShowingStatus
 		return this.ShowingStatus;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getSynopsis() {
 		// TODO - implement Movie.getSynopsis
 		return this.Synopsis;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getDirector() {
 		// TODO - implement Movie.getDirector
 		return this.Director;
 	}
 
+	
+	/** 
+	 * @return String[]
+	 */
 	public String[] getCast() {
 		// TODO - implement Movie.getCast
 		return this.Cast;
 	}
 
+	
+	/** 
+	 * @return ArrayList<Review>
+	 */
 	public ArrayList<Review> getReview() {
 		// TODO - implement Movie.getReview
 		return this.Review;
 	}
 
+	
+	/** 
+	 * @return Movie
+	 */
 	public Movie getMovie(){
 		return this;
 	}
 
+	
+	/** 
+	 * @param MovieTitle
+	 */
 	public void setMovieTitle(String MovieTitle) {
 		this.MovieTitle = MovieTitle;
 	}
 
+	
+	/** 
+	 * @param ShowingStatus
+	 */
 	public void setShowingStatus(String ShowingStatus) {
 		this.ShowingStatus = ShowingStatus;
 	}
 
+	
+	/** 
+	 * @param Synopsis
+	 */
 	public void setSynopsis(String Synopsis) {
 		this.Synopsis = Synopsis;
 	}
 
+	
+	/** 
+	 * @param Director
+	 */
 	public void setDirector(String Director) {
 		this.Director = Director;
 	}
 
+	
+	/** 
+	 * @param Cast
+	 */
 	public void setCast(String[] Cast) {
 		this.Cast = Cast;
 	}
@@ -121,6 +184,11 @@ public class Movie {
 		//NumOfMovies++;*/
 	}
 
+	
+	/** 
+	 * @param review
+	 * @param Rating
+	 */
 	public void addReview(String review,int Rating){
 	//System.out.println("UwU");
 	this.Review.add(new Review(review,Rating,this.MovieTitle));

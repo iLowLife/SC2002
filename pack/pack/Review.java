@@ -1,10 +1,21 @@
 package pack;
 import java.util.*;
+/*
+ * @author SE1 Group 4
+ * @version 13/11/2022
+ * 
+ */
 public class Review {
 
 	private String reviewText;
 	private int Rating;
 	private String MovieName;
+
+	/** 
+    * @param reviewText
+    * @param Rating
+    * @param MovieName
+	*/
 
 	public Review(String reviewText, int Rating, String MovieName) {
 		this.reviewText = reviewText;
@@ -12,26 +23,50 @@ public class Review {
 		this.MovieName = MovieName;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getReviewText() {
 		return this.reviewText;
 	}
 
+	
+	/** 
+	 * @return int
+	 */
 	public int getRating() {
 		return this.Rating;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getMovieName() {
 		return this.MovieName;
 	}
 
+	
+	/** 
+	 * @param reviewText
+	 */
 	public void setReviewText(String reviewText) {
 		this.reviewText = reviewText;
 	}
 
+	
+	/** 
+	 * @param Rating
+	 */
 	public void setRating(int Rating) {
 		this.Rating = Rating;
 	}
 
+	
+	/** 
+	 * @param MovieName
+	 */
 	public void setMovieName(String MovieName) {
 		this.MovieName = MovieName;
 	}

@@ -7,7 +7,11 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 
-
+/*
+ * @author SE1 Group 4
+ * @version 13/11/2022
+ * 
+ */
 public class Main {
 	private static ArrayList<Movie> Movie=new ArrayList<Movie>();
 	private static ArrayList<Staff> Staff=new ArrayList<Staff>();
@@ -20,6 +24,11 @@ public class Main {
 	static Customer currentCustomer;
 
 	static String assign;
+	
+	/** 
+	 * @param args
+	 * @throws ParseException
+	 */
 	public static void main(String[] args) throws ParseException {
 		Init();
 		//exportHoliday();
@@ -195,6 +204,10 @@ public class Main {
 	}
 
 	static void Init() {
+		/*
+		*
+		*
+		*/
 		//import Cineplex
 		try {
 			FileReader     frStream = new FileReader("Cineplex.txt" );
@@ -322,6 +335,10 @@ public class Main {
 
 	}
 
+	
+	/** 
+	 * @return int
+	 */
 	public static int MainUI(){
 		System.out.println("////////////////////////////////////////////////////");
 		System.out.println("Centralized Movie Booking App");
@@ -343,6 +360,10 @@ public class Main {
 		return input;
 	}
 
+
+/** 
+ * @return int
+ */
 /////////////////////////////   ADMIN UI STARTS HERE      /////////////////////////////
 	public static int AdminUI(){
 		System.out.println("////////////////////////////////////////////////////");
@@ -366,6 +387,10 @@ public class Main {
 		return input;
 	}
 
+	
+	/** 
+	 * @return boolean
+	 */
 	public static boolean AdminUILogin(){
 		Scanner sc = new Scanner(System.in);
 		System.out.println("////////////////////////////////////////////////////");
@@ -385,6 +410,10 @@ public class Main {
 		return false;
 	}
 
+	
+	/** 
+	 * @return int
+	 */
 	public static int AdminUIMain(){
 		Scanner sc = new Scanner(System.in);
 		System.out.println("////////////////////////////////////////////////////");
@@ -451,6 +480,10 @@ public class Main {
 		exportMovie();
 	}
 
+	
+	/** 
+	 * @param none
+	 */
 	public static void AdminUIUpdateMovie(){ //Can improve to change 1 by 1 instead of all
 		//update movie
 		Scanner sc = new Scanner(System.in);
@@ -518,6 +551,9 @@ public class Main {
 		exportMovie();
 	}
 
+	/*
+
+	*/
 	public static void AdminUIRemoveMovie(){
 		//Remove Movie
 		Scanner sc = new Scanner(System.in);
@@ -680,6 +716,10 @@ public class Main {
 		exportHoliday();
 	}
 
+
+/** 
+ * @return int
+ */
 /////////////////////////////    MOVIE GOER UI STARTS HERE      /////////////////////////////
 
 	public static int MovieGoerUIStart(){
@@ -704,6 +744,10 @@ public class Main {
 		return input;
 	}
 
+	
+	/** 
+	 * @return boolean
+	 */
 	public static boolean MovieGoerUILogin(){
 		//Login
 		Scanner sc = new Scanner(System.in);
@@ -747,6 +791,10 @@ public class Main {
 		exportCustomer();
     }
 
+	
+	/** 
+	 * @return int
+	 */
 	public static int MovieGoerUIMain(){
 		//Main Menu
 		Scanner sc = new Scanner(System.in);
@@ -772,6 +820,10 @@ public class Main {
 		return input;
 	}
 
+	
+	/** 
+	 * @throws ParseException
+	 */
 	public static void MovieGoerUIBookTicket() throws ParseException{
 		//Book Ticket 
 		Scanner sc = new Scanner(System.in);
@@ -874,6 +926,11 @@ public class Main {
 		System.out.println("////////////////////////////////////////////////////");
 	}
 
+	
+	/** 
+	 * @return int
+	 * @throws ParseException
+	 */
 	/////////////////////////////////     General UIs        //////////////////////////////////////
 	
 	public static int UIViewMovieSchedule() throws ParseException{
@@ -909,6 +966,10 @@ public class Main {
 		return a;
 	}
 
+	
+	/** 
+	 * @param DropDownMovie();Movie.get(input).printMovie(
+	 */
 	public static void UIViewMovie(){	//Reminder to add Try Catch for Index Out of Bounds
 		//View Movie
 		Scanner sc = new Scanner(System.in);
@@ -938,6 +999,10 @@ public class Main {
 		System.out.println("////////////////////////////////////////////////////");
 	}
 
+	
+	/** 
+	 * @return int
+	 */
 	/////////////////////////////////     Drop Down Boxes    //////////////////////////////////////
 	//drop down box for Movie
 	public static int DropDownMovie(){
@@ -957,6 +1022,10 @@ public class Main {
 		return input;
 	}
 
+	
+	/** 
+	 * @return int
+	 */
 	public static int DropDownStaff(){
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Select Staff :");
@@ -974,6 +1043,10 @@ public class Main {
 		return input;
 	}
 
+	
+	/** 
+	 * @return MovieSchedule
+	 */
 	public static MovieSchedule DropDownMovieSchedule(){
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Select Movie Schedule :");
@@ -1002,6 +1075,10 @@ public class Main {
 		return MovieSchedule.get(input-1);
 	}
 
+	
+	/** 
+	 * @return int
+	 */
 	public static int CineplexDropDown(){
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Select Cineplex :");
@@ -1019,6 +1096,11 @@ public class Main {
 		return input;
 	}
 
+	
+	/** 
+	 * @param cineplex
+	 * @return int
+	 */
 	public static int CinemaDropDown(int cineplex){
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Select Cinema :");
@@ -1036,6 +1118,12 @@ public class Main {
 		return input;
 	}
 
+	
+	/** 
+	 * @param cineplex
+	 * @param cinema
+	 * @return int
+	 */
 	public static int RoomDropDown(int cineplex,int cinema ){
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Select Room :");
@@ -1052,6 +1140,11 @@ public class Main {
 		}
 		return input;
 	}
+	
+	/** 
+	 * @param ms
+	 * @return int
+	 */
 	//pass in Movie Schedule
 	public static int DropDownSeat(MovieSchedule ms){
 		Scanner sc = new Scanner(System.in);
@@ -1079,6 +1172,10 @@ public class Main {
 	}
 
 	
+	
+	/** 
+	 * @return int
+	 */
 	public static int GetMovieRatings() {
 		String [] values1 = new String [Movie.size()];
 		double [] values2 = new double [Movie.size()];
@@ -1219,7 +1316,7 @@ public class Main {
 			System.exit( 0 );
 		}
 	}
-
+	
 	public static void exportTicket(){
 		//export ticket
 		try{

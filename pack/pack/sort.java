@@ -1,6 +1,17 @@
 package pack;
+
+/*
+ * @author SE1 Group 4
+ * @version 13/11/2022
+ * 
+ */
 public class sort{
-    public static void insertionSort(double[] arr,String[] arr1) {
+    
+	/** 
+	 * @param arr
+	 * @param arr1
+	 */
+	public static void insertionSort(double[] arr,String[] arr1) {
 		for(int i=1;i<arr.length;i++) {
 			double ratingScore=arr[i];
 			String movieName=arr1[i];

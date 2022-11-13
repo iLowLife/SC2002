@@ -3,8 +3,16 @@ import java.io.* ;
 import java.util.ArrayList;
 import pack.User;
 import pack.Movie;
-
+/*
+ * @author SE1 Group 4
+ * @version 13/11/2022
+ * 
+ */
 public class FileIO {
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
 
       //read Movie.txt

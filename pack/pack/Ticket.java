@@ -5,6 +5,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+/*
+ * @author SE1 Group 4
+ * @version 13/11/2022
+ * 
+ */
 public class Ticket{
 
 	private int TicketID;
@@ -20,6 +25,11 @@ public class Ticket{
 	//private double basePrice = 10;
 	private int TicketCount=0;
 
+	/** 
+	 * @param MS
+	 * @param customer
+	 * @param SeatID
+	 */
 	public Ticket(MovieSchedule MS, Customer customer, int SeatID) {
 			this.TicketID = ++TicketCount; //auto increment ticket id
 			
@@ -32,7 +42,17 @@ public class Ticket{
 			this.CName = customer.getName();
 			this.CEmail = customer.getEmail();
 	}
-
+	/** 
+	 * @param TicketID 
+	 * @param Price
+	 * @param Concession
+	 * @param Used
+	 * @param MovieTitle
+	 * @param MovieShowTime
+	 * @param MovieLocation
+	 * @param CName
+	 * @param CEmail
+	 */
 	public Ticket(int TicketID, double Price, boolean Concession, boolean Used, String MovieTitle, String MovieShowTime, String MovieLocation, String CName, String CEmail) {
 		this.TicketID = TicketID;
 		this.Price = Price;
@@ -47,54 +67,109 @@ public class Ticket{
 		this.CEmail = CEmail;
 	}
 
+	
+	/** 
+	 * @return int
+	 */
 	public int getTicketID() {
 		return TicketID;
 	}
 
+	
+	/** 
+	 * @param ticketID
+	 */
 	public void setTicketID(int ticketID) {
 		TicketID = ticketID;
 	}
 
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean isUsed() {
 		return Used;
 	}
 
+	
+	/** 
+	 * @return boolean
+	 */
 	public boolean isConcession() {
 		return Concession;
 	}
 
+	
+	/** 
+	 * @param used
+	 */
 	public void setUsed(boolean used) {
 		Used = used;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getCEmail(){
 		return this.CEmail;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getCName(){
 		return this.CName;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getMovieTitle(){
 		return this.MovieTitle;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getMovieShowTime(){
 		return this.MovieShowTime;
 	}
 
+	
+	/** 
+	 * @return String
+	 */
 	public String getMovieLocation(){
 		return this.MovieLocation;
 	}
 
+	
+	/** 
+	 * @return double
+	 */
 	public double getPrice() {
 		return Price;
 	}
 
+	
+	/** 
+	 * @param price
+	 */
 	public void setPrice(double price) {
 		Price = price;
 	}
 
+	
+	/** 
+	 * @param MS
+	 * @param C
+	 * @param H
+	 * @return double
+	 */
 	public double calPrice(MovieSchedule MS, int C, ArrayList<Holiday> H) {
 		double price = 10; //base Price
 		String dateTime = MS.getDate2();
